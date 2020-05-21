@@ -1,9 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aesir5", "Aesir5\Aesir5.csproj", "{8A09D314-87FD-4F10-831E-0EA425A28E5D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapSplitJoinTool", "MapSplitJoinTool\MapSplitJoinTool.csproj", "{D4261613-FD3F-4691-A714-3750AD6DFBFF}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MithiaMapEditorInstaller", "MithiaInstaller\MithiaInstaller.vdproj", "{94681764-7A7B-455C-8877-899574921CA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,8 +43,17 @@ Global
 		{D4261613-FD3F-4691-A714-3750AD6DFBFF}.Release|Mixed Platforms.Build.0 = Release|x86
 		{D4261613-FD3F-4691-A714-3750AD6DFBFF}.Release|x86.ActiveCfg = Release|x86
 		{D4261613-FD3F-4691-A714-3750AD6DFBFF}.Release|x86.Build.0 = Release|x86
+		{94681764-7A7B-455C-8877-899574921CA6}.Debug|Any CPU.ActiveCfg = Debug
+		{94681764-7A7B-455C-8877-899574921CA6}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{94681764-7A7B-455C-8877-899574921CA6}.Debug|x86.ActiveCfg = Debug
+		{94681764-7A7B-455C-8877-899574921CA6}.Release|Any CPU.ActiveCfg = Release
+		{94681764-7A7B-455C-8877-899574921CA6}.Release|Mixed Platforms.ActiveCfg = Release
+		{94681764-7A7B-455C-8877-899574921CA6}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D97804A5-786F-429E-9A3D-FF22FDFE4CF8}
 	EndGlobalSection
 EndGlobal

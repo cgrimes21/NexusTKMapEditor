@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
+using ICSharpCode.SharpZipLib.Zip.Compression;
+using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
 namespace Aesir5
 {
@@ -59,31 +61,50 @@ namespace Aesir5
             }
         }
 
-        public Map(string mapPath, bool encrypted)
+        public Map(string mapPath)
         {
             Name = Path.GetFileNameWithoutExtension(mapPath);
             IsEditable = false;
+            
+            bool encrypted = Path.GetExtension(mapPath).Equals(".mape");
+            bool tileCompressed = Path.GetExtension(mapPath).Equals(".cmp");
 
-            Stream stream = encrypted ? LoadStream(mapPath) : File.Open(mapPath, FileMode.Open);
+            FileStream mapFileStream = File.Open(mapPath, FileMode.Open);
+            Stream stream = encrypted ? LoadStream(mapPath) : mapFileStream;
 
             BinaryReader reader = new BinaryReader(stream);
-            int sx = reader.ReadByte() * 256 + reader.ReadByte();
-            int sy = reader.ReadByte() * 256 + reader.ReadByte();
+            
+            //CMP has an extra 'CMAP' header in the first 4 bytes
+            if (tileCompressed)
+            {
+                string header = new string(reader.ReadChars(4));
+                if (!header.Equals("CMAP"))
+                {
+                    reader.Close();
+                    stream.Close();
+                    throw new Exception("CMAP header missing, cannot parse cmp file");
+                }
+            }
+            
+            short sx = reader.ReadInt16();
+            short sy = reader.ReadInt16();
 
             CreateEmptyMap(sx, sy);
 
+            //If we are reading a CMP,change the stream under the reader to Deflate now
+            if (tileCompressed)
+            {
+                reader = new BinaryReader(new InflaterInputStream(mapFileStream));
+            }
+            
             for (int y = 0; y < sy; y++)
             {
                 for (int x = 0; x < sx; x++)
                 {
-                    byte[] tile = reader.ReadBytes(2);
-                    byte[] pass = reader.ReadBytes(2);
-                    byte[] @object = reader.ReadBytes(2);
-
-                    int tileNumber = tile[1] + tile[0]*256;
-                    bool passability = (pass[0] == 0 && pass[1] == 0) ? false : true;
-                    int objectNumber = @object[1] + @object[0] * 256;
-                    MapData.Add(new Point(x, y), new Tile(tileNumber, passability, objectNumber));
+                    short tileNumber = reader.ReadInt16();
+                    short passable = reader.ReadInt16();
+                    short objectNumber = reader.ReadInt16();
+                    MapData.Add(new Point(x, y), new Tile(tileNumber, Convert.ToBoolean(passable), objectNumber));
                 }
             }
 
@@ -92,29 +113,47 @@ namespace Aesir5
             IsModified = false;
         }
 
-        public void Save(string mapPath, bool encrypted)
+        public void Save(string mapPath)
         {
+            bool encrypted = Path.GetExtension(mapPath).Equals(".mape");
+            bool tileCompressed = Path.GetExtension(mapPath).Equals(".cmp");
+            
             if (File.Exists(mapPath)) File.Delete(mapPath);
 
-            Stream stream = encrypted ? (Stream)new MemoryStream() : File.Create(mapPath);
-            BinaryWriter writer = new BinaryWriter(stream);
+            FileStream mapFileStream = File.Create(mapPath);
+            Stream mapStream = encrypted ? (Stream)new MemoryStream() : mapFileStream;
+            BinaryWriter writer = new BinaryWriter(mapStream);
 
-            SaveInt(writer, Size.Width);
-            SaveInt(writer, Size.Height);
+            //CMP has an extra 'CMAP' header in the first 4 bytes
+            if (tileCompressed)
+            {
+                writer.Write("CMAP".ToCharArray());
+            }
+            
+            writer.Write(Convert.ToInt16(Size.Width));
+            writer.Write(Convert.ToInt16(Size.Height));
+
+            //If we are writing a CMP, flush and change the stream under the writer to Deflate now
+            if (tileCompressed)
+            {
+                writer.Flush();
+                writer = new BinaryWriter(new DeflaterOutputStream(mapFileStream));
+            }
+
 
             for (int y = 0; y < Size.Height; y++)
             {
                 for (int x = 0; x < Size.Width; x++)
                 {
-                    SaveInt(writer, (this[x,y] != null) ? this[x,y].TileNumber : 0);
-                    SaveBool(writer, (this[x, y] != null) ? this[x, y].Passability : true);
-                    SaveInt(writer, (this[x,y] != null) ? this[x,y].ObjectNumber : 0);
+                    writer.Write((short)((this[x, y] != null) ? this[x, y].TileNumber : 0));
+                    writer.Write(Convert.ToInt16((this[x, y] == null) || this[x, y].Passability));
+                    writer.Write((short)((this[x,y] != null) ? this[x,y].ObjectNumber : 0));
                 }
             }
 
-            if (encrypted) SaveStream((MemoryStream)stream, mapPath);
+            if (encrypted) SaveStream((MemoryStream)mapStream, mapPath);
             writer.Close();
-            stream.Close();
+            mapStream.Close();
             Name = Path.GetFileNameWithoutExtension(mapPath);
             IsModified = false;
         }

@@ -38,7 +38,7 @@ namespace Aesir5
         /// <returns></returns>
         public static string GetGameInstallFolder()
         {
-            OpenFileDialog fileDialog = new OpenFileDialog { Filter = "NexusTK|NexusTK.exe" };
+            OpenFileDialog fileDialog = new OpenFileDialog { Filter = "MornaTK|MornaTK.exe|NexusTK|NexusTK.exe" };
             DialogResult result = fileDialog.ShowDialog();
 
             if (result != DialogResult.OK)

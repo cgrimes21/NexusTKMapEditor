@@ -415,14 +415,7 @@ namespace Aesir5
         {
             DialogResult dialogResult = SaveCheck();
             if (dialogResult == DialogResult.Cancel) return;
-            OpenExistingMap(false);
-        }
-
-        private void openEncryptedToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = SaveCheck();
-            if (dialogResult == DialogResult.Cancel) return;
-            OpenExistingMap(true);
+            OpenExistingMap();
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -436,7 +429,7 @@ namespace Aesir5
                 // Extension might me .mape -> must be .map
                 if (activeMapPath.ToLower().EndsWith(".mape"))
                     activeMapPath = activeMapPath.Remove(activeMapPath.Length - 1);
-                activeMap.Save(activeMapPath, false);
+                activeMap.Save(activeMapPath);
                 Text = string.Format(@"Map [{0}]", activeMap.Name);
             }
             catch (Exception ex)
@@ -448,32 +441,12 @@ namespace Aesir5
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog { Filter = @"NexusTK Map Files|*.map", FileName = activeMap.Name };
+            SaveFileDialog saveFileDialog = new SaveFileDialog { Filter = @"Compressed Tile NexusTK Map Files|*.cmp|Encrypted NexusTK Map Files|*.mape|NexusTK Map Files|*.map", FileName = activeMap.Name };
             var dialogResult = saveFileDialog.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
                 activeMapPath = saveFileDialog.FileName;
                 saveToolStripMenuItem.PerformClick();
-            }
-        }
-
-        private void saveEncryptedToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog { Filter = @"Encrypted NexusTK Map Files|*.mape", FileName = activeMap.Name };
-            var dialogResult = saveFileDialog.ShowDialog();
-            if (dialogResult == DialogResult.OK)
-            {
-                activeMapPath = saveFileDialog.FileName;
-                try
-                {
-                    activeMap.Save(activeMapPath, true);
-                    Text = string.Format(@"Map [{0}]", activeMap.Name);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, @"Error saving map", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
             }
         }
 
@@ -604,7 +577,7 @@ namespace Aesir5
                 string.Format(@"Do you want to save changes to the current map ({0})?", activeMap.Name ?? string.Empty),
                 @"Save changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3);
 
-            if (dialogResult == DialogResult.Yes) saveEncryptedToolStripMenuItem.PerformClick();
+            if (dialogResult == DialogResult.Yes) saveToolStripMenuItem.PerformClick();
             return dialogResult;
         }
 
@@ -631,9 +604,10 @@ namespace Aesir5
             //UpdateMinimap(true, true);
         }
 
-        private void OpenExistingMap(bool encrypted)
+        private void OpenExistingMap()
         {
-            string filter = encrypted ? @"Encrypted NexusTK Map Files|*.mape" : @"NexusTK Map Files|*.map";
+
+            string filter = @"Compressed Tile NexusTK Map Files|*.cmp|Encrypted NexusTK Map Files|*.mape|NexusTK Map Files|*.map";
             OpenFileDialog openFileDialog = new OpenFileDialog { Filter = filter };
             var dialogResult = openFileDialog.ShowDialog();
             if (dialogResult == DialogResult.OK)
@@ -643,7 +617,7 @@ namespace Aesir5
 
                 try
                 {
-                    activeMap = new Map(activeMapPath, encrypted);
+                    activeMap = new Map(activeMapPath);
                     Text = string.Format("Map [{0}]", activeMap.Name);
                     SetImage(null);
                     editableToolStripMenuItem.Checked = activeMap.IsEditable;

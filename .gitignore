@@ -1,0 +1,6 @@
+*/Release/*
+*/Debug/*
+*/obj/*
+*/bin/*
+*.sln.DotSettings.user
+packages/*

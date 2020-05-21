@@ -28,13 +28,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B47AC84B164E91A98EE1656B129FD094"
+        "OwnerKey" = "8:_48244C7AA77D4BE2ACADCF686C1F9A73"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_48244C7AA77D4BE2ACADCF686C1F9A73"
+        "OwnerKey" = "8:_B47AC84B164E91A98EE1656B129FD094"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -87,6 +87,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.8"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.8 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.8"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -215,7 +231,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Mithia Map Editor"
         "ProductCode" = "8:{2044EF20-2F92-49EF-8AD5-6CFF65917667}"
-        "PackageCode" = "8:{77518687-59C5-4347-A319-2A83E8A922ED}"
+        "PackageCode" = "8:{8127F3D0-2049-466E-81D5-1CC13A48AF0B}"
         "UpgradeCode" = "8:{B7F5466D-C7E6-4648-A8A6-7B552B9CB620}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -223,15 +239,15 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:ShadoMagi"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:Mitha Map Editor Installer"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:ShadoMagi"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
-        "ARPURLINFOABOUT" = "8:"
+        "ARPURLINFOABOUT" = "8:github.com/shadomagi/"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"

@@ -4,4 +4,5 @@
 */bin/*
 *.sln.DotSettings.user
 packages/*
-.vs/Aesir5/v16/.suo
+.vs/*
+.idea/*

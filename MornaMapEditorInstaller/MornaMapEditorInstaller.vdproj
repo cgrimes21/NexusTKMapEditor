@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:MithiaMapEditorInstaller"
+"ProjectName" = "8:MornaMapEditorInstaller"
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
@@ -13,6 +13,30 @@
 "SccProvider" = "8:"
     "Hierarchy"
     {
+        "Entry"
+        {
+        "MsmKey" = "8:_952BCAC8B57B4164A7BCC9724358A3E3"
+        "OwnerKey" = "8:_BD9BF815C0534FE59783D1BF32C67526"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BD9BF815C0534FE59783D1BF32C67526"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BD9BF815C0534FE59783D1BF32C67526"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_952BCAC8B57B4164A7BCC9724358A3E3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -21,7 +45,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\MithiaMapEditor.msi"
+        "OutputFilename" = "8:Debug\\MornaMapEditor.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -53,7 +77,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\MithiaInstaller.msi"
+        "OutputFilename" = "8:Release\\MornaMapEditor.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -108,6 +132,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_952BCAC8B57B4164A7BCC9724358A3E3"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_952BCAC8B57B4164A7BCC9724358A3E3"
+                    {
+                    "Name" = "8:ICSharpCode.SharpZipLib.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:ICSharpCode.SharpZipLib.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_F570B28D83E94B9B9754F2031BA6A369"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -125,7 +180,7 @@
                 {
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_88A2BEB3929D4B6FA55E44FBA2F8C73F"
                     {
-                    "Name" = "8:Mithia Map Editor"
+                    "Name" = "8:Morna Map Editor"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
@@ -174,9 +229,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Mithia Map Editor"
+        "ProductName" = "8:Morna Map Editor"
         "ProductCode" = "8:{2044EF20-2F92-49EF-8AD5-6CFF65917667}"
-        "PackageCode" = "8:{8127F3D0-2049-466E-81D5-1CC13A48AF0B}"
+        "PackageCode" = "8:{E8479D11-D36B-47E6-94A3-C9998F600AC8}"
         "UpgradeCode" = "8:{B7F5466D-C7E6-4648-A8A6-7B552B9CB620}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -187,7 +242,7 @@
         "Manufacturer" = "8:ShadoMagi"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Mitha Map Editor Installer"
+        "Title" = "8:Morna Map Editor Installer"
         "Subject" = "8:"
         "ARPCONTACT" = "8:ShadoMagi"
         "Keywords" = "8:"
@@ -296,15 +351,15 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_DF0C2E4678BA4531888F6D6AACDFC80A"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F907C1CFC0FD4E20812BDE294B2EA4E0"
             {
-            "Name" = "8:Mithia Map Editor"
+            "Name" = "8:Morna Map Editor"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:"
+            "Target" = "8:_BD9BF815C0534FE59783D1BF32C67526"
             "Folder" = "8:_88A2BEB3929D4B6FA55E44FBA2F8C73F"
             "WorkingFolder" = "8:_F570B28D83E94B9B9754F2031BA6A369"
             "Icon" = "8:"
@@ -709,6 +764,34 @@
         }
         "ProjectOutput"
         {
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BD9BF815C0534FE59783D1BF32C67526"
+            {
+            "SourcePath" = "8:..\\MornaMapEditor\\obj\\Debug\\MornaMapEditor.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_F570B28D83E94B9B9754F2031BA6A369"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{8A09D314-87FD-4F10-831E-0EA425A28E5D}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
         }
     }
 }

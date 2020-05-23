@@ -61,7 +61,7 @@
     <StartupObject>MornaMapEditor.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>MithiaIcon.ico</ApplicationIcon>
+    <ApplicationIcon>MornaTK.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
@@ -211,7 +211,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MithiaIcon.ico" />
+    <Content Include="MornaTKBanner.bmp" />
+    <Content Include="MornaTK.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

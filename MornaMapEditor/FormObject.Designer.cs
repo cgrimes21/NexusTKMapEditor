@@ -44,9 +44,9 @@
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 320);
+            this.statusStrip.Location = new System.Drawing.Point(0, 305);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(298, 22);
+            this.statusStrip.Size = new System.Drawing.Size(288, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -59,9 +59,9 @@
             // 
             this.sb1.Cursor = System.Windows.Forms.Cursors.Default;
             this.sb1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.sb1.Location = new System.Drawing.Point(0, 303);
+            this.sb1.Location = new System.Drawing.Point(0, 288);
             this.sb1.Name = "sb1";
-            this.sb1.Size = new System.Drawing.Size(298, 17);
+            this.sb1.Size = new System.Drawing.Size(288, 17);
             this.sb1.TabIndex = 3;
             this.sb1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.sb1_Scroll);
             // 
@@ -72,7 +72,7 @@
             this.viewToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(298, 24);
+            this.menuStrip.Size = new System.Drawing.Size(288, 24);
             this.menuStrip.TabIndex = 6;
             // 
             // editToolStripMenuItem
@@ -117,7 +117,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(298, 342);
+            this.ClientSize = new System.Drawing.Size(288, 327);
             this.ControlBox = false;
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.sb1);

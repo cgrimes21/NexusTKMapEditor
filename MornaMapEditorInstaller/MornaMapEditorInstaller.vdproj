@@ -21,20 +21,32 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_9879C6E71B18477EB8F7A906C7009812"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BD9BF815C0534FE59783D1BF32C67526"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BD9BF815C0534FE59783D1BF32C67526"
+        "MsmKey" = "8:_C10F4BB1C6D3479497B778F4187B0450"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_952BCAC8B57B4164A7BCC9724358A3E3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BD9BF815C0534FE59783D1BF32C67526"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -163,6 +175,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9879C6E71B18477EB8F7A906C7009812"
+            {
+            "SourcePath" = "8:..\\MornaMapEditor\\MornaTKBanner.bmp"
+            "TargetName" = "8:MornaTKBanner.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_F570B28D83E94B9B9754F2031BA6A369"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C10F4BB1C6D3479497B778F4187B0450"
+            {
+            "SourcePath" = "8:..\\MornaMapEditor\\MornaTK.ico"
+            "TargetName" = "8:MornaTK.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_F570B28D83E94B9B9754F2031BA6A369"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -231,7 +283,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Morna Map Editor"
         "ProductCode" = "8:{2044EF20-2F92-49EF-8AD5-6CFF65917667}"
-        "PackageCode" = "8:{E8479D11-D36B-47E6-94A3-C9998F600AC8}"
+        "PackageCode" = "8:{039ED8B3-88F3-43F8-A873-78989E8C0F08}"
         "UpgradeCode" = "8:{B7F5466D-C7E6-4648-A8A6-7B552B9CB620}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -362,7 +414,7 @@
             "Target" = "8:_BD9BF815C0534FE59783D1BF32C67526"
             "Folder" = "8:_88A2BEB3929D4B6FA55E44FBA2F8C73F"
             "WorkingFolder" = "8:_F570B28D83E94B9B9754F2031BA6A369"
-            "Icon" = "8:"
+            "Icon" = "8:_C10F4BB1C6D3479497B778F4187B0450"
             "Feature" = "8:"
             }
         }
@@ -398,7 +450,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -420,7 +473,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -442,7 +496,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -499,7 +554,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"
@@ -543,7 +599,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "InstallAllUsersVisible"
@@ -578,7 +635,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -600,7 +658,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -657,7 +716,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -694,7 +754,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "UpdateText"
@@ -738,7 +799,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"

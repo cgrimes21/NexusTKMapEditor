@@ -20,7 +20,7 @@ namespace MornaMapEditor
 
         private void linkLabelUIDev_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://www.elance.com/s/-robert-/");
+            Process.Start("https://github.com/mithia/mithiamapeditor");
         }
     }
 }

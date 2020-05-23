@@ -14,7 +14,7 @@ namespace MornaMapEditor
         /// </summary>
         public static void CreateMapEditorRegistryKey()
         {
-            const string mapEditorKeyString = "Software\\MithiaMapEditor";
+            const string mapEditorKeyString = "Software\\MornaMapEditor";
 
             RegistryKey mapEditorKey = Registry.CurrentUser.OpenSubKey(mapEditorKeyString);
             if (mapEditorKey != null && mapEditorKey.GetValue("NexusTKPath") != null && Directory.Exists(mapEditorKey.GetValue("NexusTKPath").ToString()))
@@ -67,7 +67,7 @@ namespace MornaMapEditor
         {
             RegistryKey tKey = Registry.CurrentUser;
             
-            tKey = tKey.OpenSubKey("Software\\MithiaMapEditor", true);
+            tKey = tKey.OpenSubKey("Software\\MornaMapEditor", true);
             System.Diagnostics.Debug.Assert(tKey != null);
             
             if (string.IsNullOrEmpty(tKey.GetValue("NexusTKPath").ToString()) || !Directory.Exists(tKey.GetValue("NexusTKPath").ToString()))
@@ -91,7 +91,7 @@ namespace MornaMapEditor
         {
             RegistryKey tKey = Registry.CurrentUser;
 
-            tKey = tKey.OpenSubKey("Software\\MithiaMapEditor", true);
+            tKey = tKey.OpenSubKey("Software\\MornaMapEditor", true);
             System.Diagnostics.Debug.Assert(tKey != null);
 
             string gameInstallDataFolder = tKey.GetValue("NexusTKPath").ToString() + "\\Data";
@@ -139,7 +139,7 @@ namespace MornaMapEditor
             byte[] bytes = File.ReadAllBytes(exePath);
             uint checksum = t.ComputeChecksum(bytes);
 
-            tKey = tKey.OpenSubKey("Software\\MithiaMapEditor", true);
+            tKey = tKey.OpenSubKey("Software\\MornaMapEditor", true);
             System.Diagnostics.Debug.Assert(tKey != null);
             uint c_crc = Convert.ToUInt32(tKey.GetValue("Checksum"));
             if (c_crc != checksum)

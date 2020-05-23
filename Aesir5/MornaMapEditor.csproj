@@ -85,7 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Archiver.cs" />
+    <Compile Include="ArchiveInfo.cs" />
     <Compile Include="EncryptionHelper.cs" />
     <Compile Include="FormAbout.cs">
       <SubType>Form</SubType>

@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CoMithia Map Editor")]
-[assembly: AssemblyDescription("Mithia Map Editor")]
+[assembly: AssemblyTitle("Morna Map Editor")]
+[assembly: AssemblyDescription("Morna Map Editor")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Chronicles of Mithia")]
-[assembly: AssemblyProduct("Mithia Map Editor")]
-[assembly: AssemblyCopyright("Copyright © 2012")]
+[assembly: AssemblyCompany("ShadoMagi")]
+[assembly: AssemblyProduct("Morna Map Editor")]
+[assembly: AssemblyCopyright("Copyright © 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.IO;
 
-namespace Aesir5
+namespace MapSplitJoinTool
 {
     public class EPFFile
     {

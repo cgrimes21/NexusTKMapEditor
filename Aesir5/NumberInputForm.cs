@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Aesir5
+namespace MornaMapEditor
 {
     public sealed partial class NumberInputForm : Form
     {

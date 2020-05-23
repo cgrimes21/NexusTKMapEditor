@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using Aesir5;
 
 namespace MapSplitJoinTool
 {

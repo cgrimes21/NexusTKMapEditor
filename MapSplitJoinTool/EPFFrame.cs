@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Aesir5
+namespace MapSplitJoinTool
 {
     public class EPFFrame
     {

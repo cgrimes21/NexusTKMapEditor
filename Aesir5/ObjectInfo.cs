@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Aesir5
+namespace MornaMapEditor
 {
     public class ObjectInfo
     {

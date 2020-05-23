@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
-using Aesir5;
 
 namespace MapSplitJoinTool
 {

@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MornaMapEditor", "Aesir5\MornaMapEditor.csproj", "{8A09D314-87FD-4F10-831E-0EA425A28E5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapSplitJoinTool", "MapSplitJoinTool\MapSplitJoinTool.csproj", "{D4261613-FD3F-4691-A714-3750AD6DFBFF}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MithiaMapEditorInstaller", "MithiaInstaller\MithiaInstaller.vdproj", "{94681764-7A7B-455C-8877-899574921CA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A09D314-87FD-4F10-831E-0EA425A28E5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A09D314-87FD-4F10-831E-0EA425A28E5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A09D314-87FD-4F10-831E-0EA425A28E5D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8A09D314-87FD-4F10-831E-0EA425A28E5D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8A09D314-87FD-4F10-831E-0EA425A28E5D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8A09D314-87FD-4F10-831E-0EA425A28E5D}.Debug|x86.Build.0 = Debug|Any CPU
+		{8A09D314-87FD-4F10-831E-0EA425A28E5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A09D314-87FD-4F10-831E-0EA425A28E5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A09D314-87FD-4F10-831E-0EA425A28E5D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8A09D314-87FD-4F10-831E-0EA425A28E5D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8A09D314-87FD-4F10-831E-0EA425A28E5D}.Release|x86.ActiveCfg = Release|Any CPU
+		{8A09D314-87FD-4F10-831E-0EA425A28E5D}.Release|x86.Build.0 = Release|Any CPU
+		{D4261613-FD3F-4691-A714-3750AD6DFBFF}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{D4261613-FD3F-4691-A714-3750AD6DFBFF}.Debug|Any CPU.Build.0 = Debug|x86
+		{D4261613-FD3F-4691-A714-3750AD6DFBFF}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{D4261613-FD3F-4691-A714-3750AD6DFBFF}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{D4261613-FD3F-4691-A714-3750AD6DFBFF}.Debug|x86.ActiveCfg = Debug|x86
+		{D4261613-FD3F-4691-A714-3750AD6DFBFF}.Debug|x86.Build.0 = Debug|x86
+		{D4261613-FD3F-4691-A714-3750AD6DFBFF}.Release|Any CPU.ActiveCfg = Release|x86
+		{D4261613-FD3F-4691-A714-3750AD6DFBFF}.Release|Any CPU.Build.0 = Release|x86
+		{D4261613-FD3F-4691-A714-3750AD6DFBFF}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{D4261613-FD3F-4691-A714-3750AD6DFBFF}.Release|Mixed Platforms.Build.0 = Release|x86
+		{D4261613-FD3F-4691-A714-3750AD6DFBFF}.Release|x86.ActiveCfg = Release|x86
+		{D4261613-FD3F-4691-A714-3750AD6DFBFF}.Release|x86.Build.0 = Release|x86
+		{94681764-7A7B-455C-8877-899574921CA6}.Debug|Any CPU.ActiveCfg = Debug
+		{94681764-7A7B-455C-8877-899574921CA6}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{94681764-7A7B-455C-8877-899574921CA6}.Debug|x86.ActiveCfg = Debug
+		{94681764-7A7B-455C-8877-899574921CA6}.Release|Any CPU.ActiveCfg = Release
+		{94681764-7A7B-455C-8877-899574921CA6}.Release|Mixed Platforms.ActiveCfg = Release
+		{94681764-7A7B-455C-8877-899574921CA6}.Release|x86.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D97804A5-786F-429E-9A3D-FF22FDFE4CF8}
+	EndGlobalSection
+EndGlobal

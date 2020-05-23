@@ -1,9 +1,8 @@
 ﻿using System.Drawing;
 using System.IO;
 using System.Text;
-using System.Windows.Forms;
 
-namespace Aesir5
+namespace MornaMapEditor
 {
     public class Palette256
     {

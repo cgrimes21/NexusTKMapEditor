@@ -1,7 +1,6 @@
 ﻿using System.IO;
-using System.Windows.Forms;
 
-namespace Aesir5
+namespace MornaMapEditor
 {
     public sealed class PaletteTable
     {

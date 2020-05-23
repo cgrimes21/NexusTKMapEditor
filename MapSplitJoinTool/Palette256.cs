@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace Aesir5
+namespace MapSplitJoinTool
 {
     public class Palette256
     {

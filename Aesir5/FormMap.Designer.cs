@@ -1,4 +1,4 @@
-﻿namespace Aesir5
+﻿namespace MornaMapEditor
 {
     sealed partial class FormMap
     {

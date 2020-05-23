@@ -4,12 +4,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Windows.Forms;
-using System.ComponentModel;
 using System.Threading;
-using Aesir5.MapActions;
+using System.Windows.Forms;
+using MornaMapEditor.MapActions;
 
-namespace Aesir5
+namespace MornaMapEditor
 {
     public sealed partial class FormMap : Form
     {

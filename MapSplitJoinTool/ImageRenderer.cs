@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace Aesir5
+namespace MapSplitJoinTool
 {
     public class ImageRenderer : IDisposable
     {

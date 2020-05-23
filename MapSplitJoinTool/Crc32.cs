@@ -1,4 +1,4 @@
-﻿namespace Aesir5
+﻿namespace MapSplitJoinTool
 {
     public class Crc32
     {

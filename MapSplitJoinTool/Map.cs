@@ -4,7 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 
-namespace Aesir5
+namespace MapSplitJoinTool
 {
     public class Map
     {

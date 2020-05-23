@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace Aesir5
+namespace MornaMapEditor
 {
     public partial class FormTile : Form
     {

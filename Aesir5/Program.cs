@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Aesir5
+namespace MornaMapEditor
 {
     static class Program
     {

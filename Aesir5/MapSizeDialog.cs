@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace Aesir5
+namespace MornaMapEditor
 {
     public partial class MapSizeDialog : Form
     {

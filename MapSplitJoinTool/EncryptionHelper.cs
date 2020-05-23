@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Security.Cryptography;
 
-namespace Aesir5
+namespace MapSplitJoinTool
 {
     public class EncryptionHelper
     {

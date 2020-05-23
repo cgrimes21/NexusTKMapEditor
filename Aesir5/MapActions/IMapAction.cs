@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Aesir5.MapActions
+namespace MornaMapEditor.MapActions
 {
     public interface IMapAction
     {

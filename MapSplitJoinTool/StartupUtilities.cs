@@ -3,7 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using Microsoft.Win32;
 
-namespace Aesir5
+namespace MapSplitJoinTool
 {
     public static class StartupUtilities
     {

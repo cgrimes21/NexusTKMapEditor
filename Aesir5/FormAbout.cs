@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace Aesir5
+namespace MornaMapEditor
 {
     public partial class FormAbout : Form
     {

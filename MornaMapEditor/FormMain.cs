@@ -7,9 +7,11 @@ namespace MornaMapEditor
     {
         public int sizeModifier;
         private static readonly FormMain FormInstance = new FormMain();
+        private static string startupMapFile = null;
 
-        public static FormMain GetFormInstance()
+        public static FormMain GetFormInstance(string mapFile)
         {
+            startupMapFile = mapFile;
             return FormInstance;
         }
 
@@ -37,6 +39,13 @@ namespace MornaMapEditor
             fObject = new FormObject { MdiParent = this };
             fTile.Show();
             fObject.Show();
+            if (startupMapFile != null)
+            {
+                FormMap mapForm = new FormMap(this);
+                mapForm.attemptToOpenMap(startupMapFile);
+                mapForm.Show();
+
+            }
         }
 
         private void FormMain_MdiChildActivate(object sender, EventArgs e)

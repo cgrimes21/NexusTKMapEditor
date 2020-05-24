@@ -611,25 +611,30 @@ namespace MornaMapEditor
             var dialogResult = openFileDialog.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
-                activeMapPath = openFileDialog.FileName;
-                if (!File.Exists(activeMapPath)) return;
+                attemptToOpenMap(openFileDialog.FileName);
+            }
+        }
 
-                try
-                {
-                    activeMap = new Map(activeMapPath);
-                    Text = string.Format("Map [{0}]", activeMap.Name);
-                    SetImage(null);
-                    editableToolStripMenuItem.Checked = activeMap.IsEditable;
-                    RenderMap();
-                    mapUndoActions.Clear();
-                    mapRedoActions.Clear();
-                    //UpdateMinimap(true, true);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, @"Error loading map", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+        public void attemptToOpenMap(string mapFileName)
+        {
+            activeMapPath = mapFileName;
+            if (!File.Exists(activeMapPath)) return;
+
+            try
+            {
+                activeMap = new Map(activeMapPath);
+                Text = string.Format("Map [{0}]", activeMap.Name);
+                SetImage(null);
+                editableToolStripMenuItem.Checked = activeMap.IsEditable;
+                RenderMap();
+                mapUndoActions.Clear();
+                mapRedoActions.Clear();
+                //UpdateMinimap(true, true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, @"Error loading map", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 

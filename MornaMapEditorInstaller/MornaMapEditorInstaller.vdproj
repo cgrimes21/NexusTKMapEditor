@@ -22,13 +22,7 @@
         "Entry"
         {
         "MsmKey" = "8:_952BCAC8B57B4164A7BCC9724358A3E3"
-        "OwnerKey" = "8:_BD9BF815C0534FE59783D1BF32C67526"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_BD9BF815C0534FE59783D1BF32C67526"
-        "OwnerKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F1A7259EE0FF42FB98CC9BD6AB3EFF64"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -39,14 +33,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BD9BF815C0534FE59783D1BF32C67526"
+        "MsmKey" = "8:_F1A7259EE0FF42FB98CC9BD6AB3EFF64"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_952BCAC8B57B4164A7BCC9724358A3E3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F1A7259EE0FF42FB98CC9BD6AB3EFF64"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -282,15 +282,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Morna Map Editor"
-        "ProductCode" = "8:{55E71ED2-9251-4B98-82ED-81F52A29A976}"
-        "PackageCode" = "8:{5157A2A5-B733-469E-ABDA-4351B4249148}"
+        "ProductCode" = "8:{F3F5D392-F3FD-42A8-955C-7CAEC38E625F}"
+        "PackageCode" = "8:{E271C562-DCFF-4D99-B557-833044EC4A81}"
         "UpgradeCode" = "8:{B7F5466D-C7E6-4648-A8A6-7B552B9CB620}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.0"
+        "ProductVersion" = "8:1.2.0"
         "Manufacturer" = "8:Morna Map Editor"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -403,7 +403,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F907C1CFC0FD4E20812BDE294B2EA4E0"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_5005F5E5BEF347DC9DF92C25B15DF68D"
             {
             "Name" = "8:Morna Map Editor"
             "Arguments" = "8:"
@@ -411,7 +411,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_BD9BF815C0534FE59783D1BF32C67526"
+            "Target" = "8:_F1A7259EE0FF42FB98CC9BD6AB3EFF64"
             "Folder" = "8:_88A2BEB3929D4B6FA55E44FBA2F8C73F"
             "WorkingFolder" = "8:_F570B28D83E94B9B9754F2031BA6A369"
             "Icon" = "8:_C10F4BB1C6D3479497B778F4187B0450"
@@ -826,7 +826,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BD9BF815C0534FE59783D1BF32C67526"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_F1A7259EE0FF42FB98CC9BD6AB3EFF64"
             {
             "SourcePath" = "8:..\\MornaMapEditor\\obj\\Release\\MornaMapEditor.exe"
             "TargetName" = "8:"
@@ -846,7 +846,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
+            "OutputConfiguration" = "8:Release|Any CPU"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{8A09D314-87FD-4F10-831E-0EA425A28E5D}"
             "ShowKeyOutput" = "11:TRUE"

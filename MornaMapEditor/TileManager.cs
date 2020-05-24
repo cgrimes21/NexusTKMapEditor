@@ -45,7 +45,7 @@ namespace MornaMapEditor
         {
             lblStatus.Text = @"Loading tiles...";
             string[] file = new string[30];
-            string nPath = Application.StartupPath + "\\Data\\";
+            string nPath = Application.UserAppDataPath + "\\Data\\";
             for (int a = 0; a < 30; a++)
             {
                 file[a] = String.Format("{0}{1}{2}.epf", nPath, "tile", a);
@@ -77,7 +77,7 @@ namespace MornaMapEditor
         {
             lblStatus.Text = @"Loading tiles(for objects)...";
             string[] file = new string[30];
-            string nPath = Application.StartupPath + "\\Data\\";
+            string nPath = Application.UserAppDataPath + "\\Data\\";
             for (int a = 0; a < 30; a++)
             {
                 file[a] = String.Format("{0}{1}{2}.epf", nPath, "tilec", a);

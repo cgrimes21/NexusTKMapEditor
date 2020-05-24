@@ -18,11 +18,11 @@ namespace MornaMapEditor
             // Extract files if required
             StartupUtilities.lblStatus = lblStatus;
             StartupUtilities.CreateMapEditorRegistryKey();
-            if(!StartupUtilities.ExtractFiles(Application.StartupPath)) return;
+            if(!StartupUtilities.ExtractFiles(Application.UserAppDataPath)) return;
 
             // Load tiles
             TileManager.lblStatus = lblStatus;
-            TileManager.Load(Application.StartupPath);
+            TileManager.Load(Application.UserAppDataPath);
 
             // Set forms to be MDI and show them
             fTile = new FormTile { MdiParent = this };

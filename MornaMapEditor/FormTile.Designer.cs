@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTile));
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.focusTileLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.sb1 = new System.Windows.Forms.HScrollBar();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,17 +43,17 @@
             // 
             // statusStrip
             // 
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.toolStripStatusLabel});
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.focusTileLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 266);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(250, 22);
             this.statusStrip.TabIndex = 3;
             this.statusStrip.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel
+            // focusTileLabel
             // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
+            this.focusTileLabel.Name = "focusTileLabel";
+            this.focusTileLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // sb1
             // 
@@ -109,27 +110,28 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(250, 288);
-            this.ControlBox = false;
             this.Controls.Add(this.sb1);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(256, 317);
-            this.MinimizeBox = false;
             this.Name = "FormTile";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Tiles";
-            this.TransparencyKey = System.Drawing.Color.White;
+            this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTile_FormClosing);
             this.Load += new System.EventHandler(this.frmTile_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmTile_Paint);
+            this.SizeChanged += new System.EventHandler(this.FormTile_SizeChanged);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.formTile_Paint);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.frmTile_MouseClick);
+            this.MouseLeave += new System.EventHandler(this.FormTile_MouseLeave);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmTile_MouseMove);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
@@ -145,7 +147,7 @@
         private System.Windows.Forms.HScrollBar sb1;
         private System.Windows.Forms.ToolStripMenuItem showGridToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel focusTileLabel;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
 
         #endregion

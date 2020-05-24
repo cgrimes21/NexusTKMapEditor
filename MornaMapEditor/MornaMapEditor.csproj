@@ -211,8 +211,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MornaTKBanner.bmp" />
     <Content Include="MornaTK.ico" />
+    <Content Include="MornaTKBanner.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

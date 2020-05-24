@@ -15,14 +15,14 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_952BCAC8B57B4164A7BCC9724358A3E3"
-        "OwnerKey" = "8:_BD9BF815C0534FE59783D1BF32C67526"
+        "MsmKey" = "8:_0C70B34F95B04CBA9018658813E83434"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9879C6E71B18477EB8F7A906C7009812"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_952BCAC8B57B4164A7BCC9724358A3E3"
+        "OwnerKey" = "8:_BD9BF815C0534FE59783D1BF32C67526"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -144,6 +144,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0C70B34F95B04CBA9018658813E83434"
+            {
+            "SourcePath" = "8:..\\MornaMapEditor\\MornaTKBanner.jpg"
+            "TargetName" = "8:MornaTKBanner.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_F570B28D83E94B9B9754F2031BA6A369"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_952BCAC8B57B4164A7BCC9724358A3E3"
             {
             "AssemblyRegister" = "3:1"
@@ -173,26 +193,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9879C6E71B18477EB8F7A906C7009812"
-            {
-            "SourcePath" = "8:..\\MornaMapEditor\\MornaTKBanner.bmp"
-            "TargetName" = "8:MornaTKBanner.bmp"
-            "Tag" = "8:"
-            "Folder" = "8:_F570B28D83E94B9B9754F2031BA6A369"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C10F4BB1C6D3479497B778F4187B0450"
@@ -283,7 +283,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Morna Map Editor"
         "ProductCode" = "8:{55E71ED2-9251-4B98-82ED-81F52A29A976}"
-        "PackageCode" = "8:{EDC0EE66-A1EB-4520-81EC-43FBAE9A4020}"
+        "PackageCode" = "8:{5157A2A5-B733-469E-ABDA-4351B4249148}"
         "UpgradeCode" = "8:{B7F5466D-C7E6-4648-A8A6-7B552B9CB620}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -451,7 +451,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
+                            "Value" = "8:_0C70B34F95B04CBA9018658813E83434"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -474,7 +474,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
+                            "Value" = "8:_0C70B34F95B04CBA9018658813E83434"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -497,7 +497,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
+                            "Value" = "8:_0C70B34F95B04CBA9018658813E83434"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -555,7 +555,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
+                            "Value" = "8:_0C70B34F95B04CBA9018658813E83434"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"
@@ -600,7 +600,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
+                            "Value" = "8:_0C70B34F95B04CBA9018658813E83434"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "InstallAllUsersVisible"
@@ -636,7 +636,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
+                            "Value" = "8:_0C70B34F95B04CBA9018658813E83434"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -659,7 +659,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
+                            "Value" = "8:_0C70B34F95B04CBA9018658813E83434"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -717,7 +717,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
+                            "Value" = "8:_0C70B34F95B04CBA9018658813E83434"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -755,7 +755,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
+                            "Value" = "8:_0C70B34F95B04CBA9018658813E83434"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "UpdateText"
@@ -800,7 +800,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_9879C6E71B18477EB8F7A906C7009812"
+                            "Value" = "8:_0C70B34F95B04CBA9018658813E83434"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"

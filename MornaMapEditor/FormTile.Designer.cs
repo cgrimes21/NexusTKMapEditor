@@ -143,11 +143,11 @@
 
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem findTileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel focusTileLabel;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.HScrollBar sb1;
         private System.Windows.Forms.ToolStripMenuItem showGridToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip;
-        private System.Windows.Forms.ToolStripStatusLabel focusTileLabel;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
 
         #endregion

@@ -18,11 +18,14 @@ namespace MornaMapEditor
         private int tileRows = 0;
         private int sizeModifier;
         private bool showGrid;
+        private bool changeSincePaint;
         
         public bool ShowGrid
         {
             get { return showGrid; }
-            set { showGrid = value; Invalidate(); }
+            set { showGrid = value;
+                changeSincePaint = true;
+                Invalidate(); }
         }
 
         public static FormTile GetFormInstance()
@@ -52,6 +55,7 @@ namespace MornaMapEditor
             sb1.Maximum = tilesPerRow + (Width / sizeModifier);
             sb1.LargeChange = (Width / sizeModifier);
             selectedTiles.Clear();
+            changeSincePaint = true;
             Invalidate();
         }
 
@@ -65,6 +69,8 @@ namespace MornaMapEditor
 
         void formTile_Paint(object sender, PaintEventArgs e)
         {
+            if (!changeSincePaint)
+                return;
             if (BackgroundImage != null)
                 BackgroundImage.Dispose();
             if (WindowState == FormWindowState.Minimized)
@@ -119,6 +125,7 @@ namespace MornaMapEditor
             penFocused.Dispose();
             statusStrip.Update();
             sb1.Update();
+            changeSincePaint = false;
         }
 
         private void frmTile_MouseWheel(object sender, MouseEventArgs e)
@@ -155,7 +162,8 @@ namespace MornaMapEditor
             int tileNumber = (sb1.Value + xIndex) + (tilesPerRow * yIndex);
             string newText = $"Tile number: {tileNumber}";
             if(!newText.Equals(focusTileLabel.Text)){
-                focusTileLabel.Text = newText; 
+                focusTileLabel.Text = newText;
+                changeSincePaint = true;
                 //Immediate repaint required here, text doesn't seem to update until you focus the status strip otherwise
                 Refresh(); 
             }
@@ -182,6 +190,7 @@ namespace MornaMapEditor
              }
              TileManager.TileSelection = NormalizeSelection();
              TileManager.LastSelection = TileManager.SelectionType.Tile;
+             changeSincePaint = true;
              Invalidate();
         }
 
@@ -276,6 +285,7 @@ namespace MornaMapEditor
         {
             focusedTile = Point.Empty;
             focusTileLabel.Text = null;
+            changeSincePaint = true;
             Refresh();
         }
     }

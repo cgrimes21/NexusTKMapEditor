@@ -56,10 +56,10 @@ namespace MornaMapEditor
                 file2.frames[i] = new EPFFrame();
                 //file2[i] = new EPFFrame();
 
-                int top = reader.ReadInt16();
-                int left = reader.ReadInt16();
-                int bottom = reader.ReadInt16();
-                int right = reader.ReadInt16();
+                var top = reader.ReadUInt16();
+                var left = reader.ReadUInt16();
+                var bottom = reader.ReadUInt16();
+                var right = reader.ReadUInt16();
                 //if ((short)left < 0) left = Math.Abs((short)left);
                 //if ((short)top < 0) top = Math.Abs((short)top);
                 //System.Windows.Forms.MessageBox.Show("Left " + left.ToString() + " Right " + right.ToString() + " Top " + top.ToString() + " Bottom " + bottom.ToString());

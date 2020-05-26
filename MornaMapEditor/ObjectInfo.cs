@@ -23,7 +23,7 @@ namespace MornaMapEditor
             Stream stream = new FileStream(path, FileMode.Open);
 
             BinaryReader binaryReader = new BinaryReader(stream);
-            int count = binaryReader.ReadInt32();
+            var count = binaryReader.ReadUInt32();
             ObjectInfo[] infoCollection = new ObjectInfo[count];
             infoCollection[0] = new ObjectInfo {height = 0, indices = new int[0]};
             for (int index = 0; index < count; ++index)

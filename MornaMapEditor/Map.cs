@@ -37,8 +37,8 @@ namespace MornaMapEditor
                 }
             }
             
-            short sx = reader.ReadInt16();
-            short sy = reader.ReadInt16();
+            var sx = reader.ReadUInt16();
+            var sy = reader.ReadUInt16();
 
             CreateEmptyMap(sx, sy);
 
@@ -52,9 +52,9 @@ namespace MornaMapEditor
             {
                 for (int x = 0; x < sx; x++)
                 {
-                    short tileNumber = reader.ReadInt16();
-                    short passable = reader.ReadInt16();
-                    short objectNumber = reader.ReadInt16();
+                    var tileNumber = reader.ReadUInt16();
+                    var passable = reader.ReadUInt16();
+                    var objectNumber = reader.ReadUInt16();
                     MapData.Add(new Point(x, y), new Tile(tileNumber, Convert.ToBoolean(passable), objectNumber));
                 }
             }

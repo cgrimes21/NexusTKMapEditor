@@ -28,7 +28,7 @@ namespace MornaMapEditor
             {
                 return null;
             }
-            int count = reader.ReadUInt16();
+            var count = reader.ReadUInt16();
             Palette256[] pal = new Palette256[count];
             for (int x = 0; x < count; x++)
             {

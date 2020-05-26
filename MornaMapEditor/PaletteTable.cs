@@ -41,7 +41,7 @@ namespace MornaMapEditor
         {
             BinaryReader reader = new BinaryReader(stream);
 
-            int entryCount = reader.ReadInt32();
+            var entryCount = reader.ReadUInt32();
             paletteEntries = new int[entryCount];
 
             for(int i = 0; i < entryCount; i++)

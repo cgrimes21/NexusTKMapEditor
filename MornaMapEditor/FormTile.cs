@@ -8,7 +8,6 @@ namespace MornaMapEditor
     public partial class FormTile : Form
     {
 
-        private static readonly int pixelBuffer = 10;
         private static readonly FormTile FormInstance = new FormTile();
 
         private readonly List<Point> selectedTiles = new List<Point>();
@@ -43,17 +42,17 @@ namespace MornaMapEditor
         private void frmTile_Load(object sender, EventArgs e)
         {
             menuStrip.Visible = false;
-            MinimumSize = new Size(sizeModifier + pixelBuffer, sizeModifier + sb1.Height + menuStrip.Height + statusStrip.Height + pixelBuffer);
+            MinimumSize = new Size(sizeModifier, sizeModifier + sb1.Height + menuStrip.Height + statusStrip.Height);
             updateRenderParams();
         }
 
         private void updateRenderParams()
         {
-            usableHeight = Height - sb1.Height - menuStrip.Height - statusStrip.Height - pixelBuffer;
+            usableHeight = ClientSize.Height - (sb1.Visible ? sb1.Height : 0) - (menuStrip.Visible ? menuStrip.Height : 0) - (statusStrip.Visible ? statusStrip.Height : 0);
             tileRows = usableHeight / sizeModifier;
-            tilesPerRow = TileManager.Epf[0].max / tileRows;
-            sb1.Maximum = tilesPerRow + (Width / sizeModifier);
-            sb1.LargeChange = (Width / sizeModifier);
+            tilesPerRow = (int) Math.Ceiling(TileManager.Epf[0].max / Convert.ToDouble(tileRows));
+            sb1.Maximum = tilesPerRow + (ClientSize.Width / sizeModifier);
+            sb1.LargeChange = (ClientSize.Width / sizeModifier);
             selectedTiles.Clear();
             changeSincePaint = true;
             Invalidate();
@@ -75,16 +74,16 @@ namespace MornaMapEditor
                 BackgroundImage.Dispose();
             if (WindowState == FormWindowState.Minimized)
                 return;
-
-            //Bitmap tSet = new Bitmap(360, 360);
-            Bitmap tmpBitmap = new Bitmap(Width, usableHeight);
+            
+            //Actual used height here, not what would've been usable
+            Bitmap tmpBitmap = new Bitmap(ClientSize.Width, tileRows * sizeModifier);
             Graphics graphics = Graphics.FromImage(tmpBitmap);
             graphics.Clear(Color.DarkGreen);
             Pen penGrid = new Pen(Color.LightCyan, 1);
 
-            for (int xIndex = 0; xIndex <= (int) Math.Ceiling(Convert.ToDouble(Width / sizeModifier)); xIndex++)
+            for (int xIndex = 0; xIndex <= (int) Math.Ceiling(ClientSize.Width / Convert.ToDouble(sizeModifier)); xIndex++)
             {
-                for (int yIndex = 0; yIndex <= tileRows; yIndex++)
+                for (int yIndex = 0; yIndex < tileRows; yIndex++)
                 {
                     Rectangle tileRectangle = new Rectangle(xIndex * sizeModifier, yIndex * sizeModifier, sizeModifier, sizeModifier);
                     int tileNumber = (sb1.Value + xIndex) + (tilesPerRow * yIndex);
@@ -92,7 +91,8 @@ namespace MornaMapEditor
                     {
                         graphics.DrawImage(ImageRenderer.Singleton.GetTileBitmap(tileNumber), tileRectangle);
                     }
-                    
+                    else
+
                     if (ShowGrid)
                     {
                         graphics.DrawRectangle(penGrid, tileRectangle);
@@ -136,7 +136,7 @@ namespace MornaMapEditor
             }
             else if (e.Delta < 0)
             {
-                if (sb1.Value + 1 <= (sb1.Maximum - (Width / sizeModifier))) sb1.Value++;
+                if (sb1.Value + 1 <= (sb1.Maximum - (ClientSize.Width / sizeModifier))) sb1.Value++;
             }
 
             sb1_Scroll(null, null); 
@@ -144,9 +144,12 @@ namespace MornaMapEditor
 
         private void frmTile_MouseMove(object sender, MouseEventArgs e)
         {
-            int xIndex = e.X / sizeModifier;
-            int yIndex = e.Y / sizeModifier;
-            updateFocusedTile(xIndex, yIndex);
+            var xIndex = e.X / sizeModifier;
+            var yIndex = e.Y / sizeModifier;
+            if(xIndex >= tilesPerRow || yIndex >= tileRows)
+                ClearFocusedTile();
+            else
+                updateFocusedTile(xIndex, yIndex);
         }
         
         private void updateFocusedTile(int xIndex, int yIndex){
@@ -247,7 +250,7 @@ namespace MornaMapEditor
             //int tileNumber = (sb1.Value + xIndex) + (tilesPerRow * yIndex);
             int yIndex = tileNumber / tilesPerRow;
             int indexInRow = tileNumber - (tilesPerRow * yIndex);
-            int viewableTilesPerRow = Width / sizeModifier;
+            int viewableTilesPerRow = ClientSize.Width / sizeModifier;
             
             //Scroll to a 'window' instead of the direct indexInRow, this is a bit more of a natural interaction
             int scrollBarIndex = (indexInRow / viewableTilesPerRow) * viewableTilesPerRow;
@@ -282,6 +285,11 @@ namespace MornaMapEditor
         }
 
         private void FormTile_MouseLeave(object sender, EventArgs e)
+        {
+            ClearFocusedTile();
+        }
+
+        private void ClearFocusedTile()
         {
             focusedTile = Point.Empty;
             focusTileLabel.Text = null;

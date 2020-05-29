@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace MornaMapEditor
@@ -118,7 +119,7 @@ namespace MornaMapEditor
                     if (mdiChild is FormMap)
                     {
                         FormMap map = (FormMap)mdiChild;
-                        map.Reload(true);
+                        map.Reload();
                     }
                 }
             }
@@ -152,7 +153,7 @@ namespace MornaMapEditor
                     if (mdiChild is FormMap)
                     {
                         FormMap map = (FormMap)mdiChild;
-                        map.Reload(true);
+                        map.Reload();
                     }
                 }
             }
@@ -186,7 +187,7 @@ namespace MornaMapEditor
                     if (mdiChild is FormMap)
                     {
                         FormMap map = (FormMap)mdiChild;
-                        map.Reload(true);
+                        map.Reload();
                     }
                 }
             }
@@ -213,6 +214,24 @@ namespace MornaMapEditor
             fTile = FormTile.GetFormInstance();
             fTile.WindowState = FormWindowState.Normal;
             fTile.Show();
+        }
+
+        private void convertMapsToPNGsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var dialog = new BatchConverterDialog();
+            var result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                var converter = new BatchConverter(dialog.SourceFolder.Text, dialog.DestinationFolder.Text);
+                var fileCount = converter.NumberToConvert();
+                var confirmation =
+                    MessageBox.Show($@"{fileCount} Files will be converted, continue?", "Convesion Confirmation", MessageBoxButtons.YesNo);
+                if (confirmation != DialogResult.Yes) return;
+                converter.ConvertMaps();
+                var startInfo = new ProcessStartInfo("explorer.exe", dialog.DestinationFolder.Text);
+                Process.Start(startInfo);
+                MessageBox.Show("Creation of map images complete.");
+            }
         }
     }
 }

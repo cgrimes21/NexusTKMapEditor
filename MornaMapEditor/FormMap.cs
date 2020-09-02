@@ -215,12 +215,13 @@ namespace MornaMapEditor
             int newFocusedTileX = e.X / sizeModifier;
             int newFocusedTileY = e.Y / sizeModifier;
 
-            if (newFocusedTileX >= activeMap.Size.Width || newFocusedTileY >= activeMap.Size.Height)
+            bool outOfBounds = (newFocusedTileX >= activeMap.Size.Width || newFocusedTileY >= activeMap.Size.Height || newFocusedTileX < 0 || newFocusedTileY < 0);
+            if(outOfBounds)
             {
                 toolStripStatusLabel.Text = @"Outside of map";
             }
 
-            bool refresh = (newFocusedTileX != focusedTile.X || newFocusedTileY != focusedTile.Y);
+            bool refresh = !outOfBounds && (newFocusedTileX != focusedTile.X || newFocusedTileY != focusedTile.Y);
 
             if (refresh)
             {
@@ -324,6 +325,10 @@ namespace MornaMapEditor
             int tileX = e.X / sizeModifier;
             int tileY = e.Y / sizeModifier;
 
+            // We're in a tile that is not an actual tile, this likely happens in multi-tile painting
+            if (tileX < 0 || tileX > activeMap.Size.Width || tileY < 0 || tileY > activeMap.Size.Height)
+                return;
+                    
             if (ShowPass)
                 TogglePass(tileX, tileY);
             else

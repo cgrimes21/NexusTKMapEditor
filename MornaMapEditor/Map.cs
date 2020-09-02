@@ -116,6 +116,7 @@ namespace MornaMapEditor
             {
                 if (!IsEditable) return;
                 mapData[x, y] = value;
+                mapCache[x, y] = null;
                 IsModified = true;
             }
         }

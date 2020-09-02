@@ -27,44 +27,68 @@ namespace MornaMapEditor
             FileStream mapFileStream = File.Open(mapPath, FileMode.Open);
 
             BinaryReader reader = new BinaryReader(mapFileStream);
-            
-            //CMP has an extra 'CMAP' header in the first 4 bytes
-            if (tileCompressed)
+            try
             {
-                string header = new string(reader.ReadChars(4));
-                if (!header.Equals("CMAP"))
+                //CMP has an extra 'CMAP' header in the first 4 bytes
+                if (tileCompressed)
                 {
-                    reader.Close();
-                    mapFileStream.Close();
-                    throw new Exception("CMAP header missing, cannot parse cmp file");
+                    string header = new string(reader.ReadChars(4));
+                    if (!header.Equals("CMAP"))
+                    {
+                        reader.Close();
+                        mapFileStream.Close();
+                        throw new Exception("CMAP header missing, cannot parse cmp file");
+                    }
                 }
-            }
-            
-            var sx = reader.ReadUInt16();
-            var sy = reader.ReadUInt16();
 
-            CreateEmptyMap(sx, sy);
+                var sx = reader.ReadUInt16();
+                var sy = reader.ReadUInt16();
 
-            //If we are reading a CMP,change the stream under the reader to Deflate now
-            if (tileCompressed)
-            {
-                reader = new BinaryReader(new InflaterInputStream(mapFileStream));
-            }
-            
-            for (int y = 0; y < sy; y++)
-            {
-                for (int x = 0; x < sx; x++)
+                if (!tileCompressed)
                 {
-                    var tileNumber = reader.ReadUInt16();
-                    var passable = reader.ReadUInt16();
-                    var objectNumber = reader.ReadUInt16();
-                    mapData[x, y] = new Tile(tileNumber, Convert.ToBoolean(passable), objectNumber);
+                    //MAP format uses big endian, manually read as such
+                    var sxBytes = BitConverter.GetBytes(sx);
+                    var syBytes = BitConverter.GetBytes(sy);
+                    sx = BitConverter.ToUInt16(new[] {sxBytes[1], sxBytes[0]}, 0);
+                    sy = BitConverter.ToUInt16(new[] {syBytes[1], syBytes[0]}, 0);
                 }
+
+                CreateEmptyMap(sx, sy);
+
+                //If we are reading a CMP,change the stream under the reader to Deflate now
+                if (tileCompressed)
+                {
+                    reader = new BinaryReader(new InflaterInputStream(mapFileStream));
+                }
+
+                for (int y = 0; y < sy; y++)
+                {
+                    for (int x = 0; x < sx; x++)
+                    {
+                        var tileNumber = reader.ReadUInt16();
+                        var passable = reader.ReadUInt16();
+                        var objectNumber = reader.ReadUInt16();
+                        if (!tileCompressed)
+                        {
+                            //MAP format uses big endian, manually read as such
+                            var tileBtyes = BitConverter.GetBytes(tileNumber);
+                            var objectBytes = BitConverter.GetBytes(objectNumber);
+                            tileNumber = BitConverter.ToUInt16(new[] {tileBtyes[1], tileBtyes[0]}, 0);
+                            objectNumber = BitConverter.ToUInt16(new[] {objectBytes[1], objectBytes[0]}, 0);
+                        }
+                        mapData[x, y] = new Tile(tileNumber, Convert.ToBoolean(passable), objectNumber);
+                    }
+                }
+
+                IsModified = false;
+            }
+            finally
+            {
+                reader.Close();
+                mapFileStream.Close();                
             }
 
-            reader.Close();
-            mapFileStream.Close();
-            IsModified = false;
+
         }
 
         public void Save(string mapPath)
@@ -82,14 +106,25 @@ namespace MornaMapEditor
                 writer.Write("CMAP".ToCharArray());
             }
             
-            writer.Write(Convert.ToInt16(Size.Width));
-            writer.Write(Convert.ToInt16(Size.Height));
+
 
             //If we are writing a CMP, flush and change the stream under the writer to Deflate now
             if (tileCompressed)
             {
+                writer.Write(Convert.ToInt16(Size.Width));
+                writer.Write(Convert.ToInt16(Size.Height));
                 writer.Flush();
                 writer = new BinaryWriter(new DeflaterOutputStream(mapFileStream));
+            }
+            else
+            {
+                // MAP format has big endian which we need to do manually
+                var widthBytes = BitConverter.GetBytes(Convert.ToInt16(Size.Width));
+                var heightBytes = BitConverter.GetBytes(Convert.ToInt16(Size.Height));
+                writer.Write(widthBytes[1]);
+                writer.Write(widthBytes[0]);
+                writer.Write(heightBytes[1]);
+                writer.Write(heightBytes[0]);
             }
 
 
@@ -97,9 +132,23 @@ namespace MornaMapEditor
             {
                 for (int x = 0; x < Size.Width; x++)
                 {
-                    writer.Write((short)((this[x, y] != null) ? this[x, y].TileNumber : 0));
-                    writer.Write(Convert.ToInt16((this[x, y] == null) || this[x, y].Passable));
-                    writer.Write((short)((this[x,y] != null) ? this[x,y].ObjectNumber : 0));
+                    if (tileCompressed)
+                    {
+                        writer.Write((short) ((this[x, y] != null) ? this[x, y].TileNumber : 0));
+                        writer.Write(Convert.ToInt16((this[x, y] == null) || this[x, y].Passable));
+                        writer.Write((short) ((this[x, y] != null) ? this[x, y].ObjectNumber : 0));
+                    }
+                    else
+                    {
+                        // MAP format has big endian which we need to do manually
+                        var tileBytes = BitConverter.GetBytes(this[x, y].TileNumber);
+                        var objectBytes = BitConverter.GetBytes(this[x, y].ObjectNumber);
+                        writer.Write(tileBytes[1]);
+                        writer.Write(tileBytes[0]);
+                        writer.Write(Convert.ToInt16((this[x, y] == null) || this[x, y].Passable));
+                        writer.Write(objectBytes[1]);
+                        writer.Write(objectBytes[0]);
+                    }
                 }
             }
 

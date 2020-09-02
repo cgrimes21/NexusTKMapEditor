@@ -627,6 +627,19 @@ namespace MornaMapEditor
                 Invalidate();
                 //UpdateMinimap(true, true);
             }
+            catch (EndOfStreamException)
+            {
+                //Special handling for older version of maker that inverted some bytes
+                activeMap = new Map(activeMapPath);
+                Text = string.Format("Map [{0}]", activeMap.Name);
+                editableToolStripMenuItem.Checked = activeMap.IsEditable;
+                mapUndoActions.Clear();
+                mapRedoActions.Clear();
+                changeSinceRender = true;
+                pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
+                Invalidate();
+                //UpdateMinimap(true, true);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, @"Error loading map", MessageBoxButtons.OK, MessageBoxIcon.Error);

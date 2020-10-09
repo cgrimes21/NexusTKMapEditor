@@ -20,7 +20,7 @@ namespace MornaMapEditor
         private bool isMouseDown;
         private bool copy;
         private int sizeModifier;
-        private const int initialWidth = 17, initialHeight = 15;
+        private const int initialWidth = 30, initialHeight = 20;
         private Point focusedTile = new Point(-1, -1);
         private Point copyStartTile = new Point(-1, -1);
         private Map activeMap;
@@ -506,14 +506,14 @@ namespace MornaMapEditor
                 return;
             }
 
-            var mapSizeDialog = new MapSizeDialog();
+            var mapSizeDialog = new MapSizeDialog(activeMap.Size);
             DialogResult dialogResult = mapSizeDialog.ShowDialog(this);
             if (dialogResult == DialogResult.Cancel) return;
 
             AddMapAction(new MapActionResize(activeMap.Size, mapSizeDialog.MapSize));
 
-            activeMap.Size = mapSizeDialog.MapSize;
-            activeMap.IsModified = changeSinceRender = true;
+            activeMap.ResizeMap(mapSizeDialog.MapSize);
+            changeSinceRender = true;
             pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
             Invalidate();
         }
@@ -576,7 +576,7 @@ namespace MornaMapEditor
 
         private void CreateNewMap()
         {
-            var mapSizeDialog = new MapSizeDialog();
+            var mapSizeDialog = new MapSizeDialog(new Size(initialWidth, initialHeight));
             DialogResult dialogResult = mapSizeDialog.ShowDialog(this);
             if (dialogResult == DialogResult.Cancel) return;
 

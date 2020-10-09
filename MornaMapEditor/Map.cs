@@ -183,6 +183,26 @@ namespace MornaMapEditor
             mapCache = new Bitmap[width,height];
         }
 
+        public void ResizeMap(Size newSize)
+        {
+            var oldSize = Size;
+            var oldData = mapData;
+            var oldCache = mapCache;
+            Size = newSize;
+            IsModified = true;
+            mapData = new Tile[Size.Width, Size.Height];
+            mapCache = new Bitmap[Size.Width, Size.Height];
+            // Copy rows up to the size of the smaller height of the two arrays. A row is the size of the smaller width of the two arrays
+            // We will either let the end fill with null or we are pruning
+            for (int y = 0; y < Math.Min(oldSize.Height, newSize.Height); y++)
+            {
+                var startIndexOld = oldSize.Width * y;
+                var startIndexNew = Size.Width * y;
+                Array.Copy(oldData, startIndexOld, mapData, startIndexNew, Math.Min(oldSize.Width, Size.Width));
+                Array.Copy(oldCache, startIndexOld, mapCache, startIndexNew, Math.Min(oldSize.Width, Size.Width));
+            }
+        }
+
         public Bitmap GetFullyRenderedTile(int x, int y, int sizeModifier, bool forceRenderEmpty, bool currentShowTiles, bool currentShowObjects)
         {
             var cachedTile = mapCache[x, y];

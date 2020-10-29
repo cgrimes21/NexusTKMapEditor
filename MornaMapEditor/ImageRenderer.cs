@@ -247,8 +247,8 @@ namespace MornaMapEditor
             //If only showing objects, make sure we have a background of dark green first
             lock (drawLock)
             {
-                graphics.FillRectangle(Brushes.DarkGreen, xIndex * sizeModifier, yIndex * sizeModifier, sizeModifier, sizeModifier);
-                graphics.DrawImage(unfilledObjectBitmap, xIndex * sizeModifier, yIndex * sizeModifier); //, 36, 36)
+                graphics.FillRectangle(Brushes.DarkGreen, 0, 0, sizeModifier, sizeModifier);
+                graphics.DrawImage(unfilledObjectBitmap, 0, 0, sizeModifier, sizeModifier);
                 graphics.Dispose();
                 return renderedBitmap.Clone() as Bitmap;
             }

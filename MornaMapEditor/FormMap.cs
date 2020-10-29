@@ -764,9 +764,11 @@ namespace MornaMapEditor
                         {
                             if (mapTileY - i >= 0)
                             {
-                                var renderedTile = activeMap.GetFullyRenderedTile(mapTileX, mapTileY - i, sizeModifier,
-                                    activeMap[mapTileX, mapTileY].ObjectNumber == 0, showTiles, showObjects);
-                                graphics.DrawImage(renderedTile, mapTileX * sizeModifier, (mapTileY - i) * sizeModifier);
+                                var currentTileY = mapTileY - i;
+                                activeMap[mapTileX, currentTileY] = activeMap[mapTileX, currentTileY] ?? Tile.DefaultTile;
+                                var renderedTile = activeMap.GetFullyRenderedTile(mapTileX, currentTileY, sizeModifier,
+                                    activeMap[mapTileX, currentTileY].ObjectNumber == 0, showTiles, showObjects);
+                                graphics.DrawImage(renderedTile, mapTileX * sizeModifier, (currentTileY) * sizeModifier);
                             }
                         }
                     }

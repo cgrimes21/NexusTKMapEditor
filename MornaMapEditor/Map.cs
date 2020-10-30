@@ -192,14 +192,14 @@ namespace MornaMapEditor
             IsModified = true;
             mapData = new Tile[Size.Width, Size.Height];
             mapCache = new Bitmap[Size.Width, Size.Height];
-            // Copy rows up to the size of the smaller height of the two arrays. A row is the size of the smaller width of the two arrays
+            // Copy columns up to the size of the smaller width of the two arrays. A row is the size of the smaller height of the two arrays
             // We will either let the end fill with null or we are pruning
-            for (int y = 0; y < Math.Min(oldSize.Height, newSize.Height); y++)
+            for (int x = 0; x < Math.Min(oldSize.Width, newSize.Width); x++)
             {
-                var startIndexOld = oldSize.Width * y;
-                var startIndexNew = Size.Width * y;
-                Array.Copy(oldData, startIndexOld, mapData, startIndexNew, Math.Min(oldSize.Width, Size.Width));
-                Array.Copy(oldCache, startIndexOld, mapCache, startIndexNew, Math.Min(oldSize.Width, Size.Width));
+                var startIndexOld = oldSize.Height * x;
+                var startIndexNew = Size.Height * x;
+                Array.Copy(oldData, startIndexOld, mapData, startIndexNew, Math.Min(oldSize.Height, Size.Height));
+                Array.Copy(oldCache, startIndexOld, mapCache, startIndexNew, Math.Min(oldSize.Height, Size.Height));
             }
         }
 

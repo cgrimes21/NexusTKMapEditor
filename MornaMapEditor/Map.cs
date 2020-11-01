@@ -203,6 +203,11 @@ namespace MornaMapEditor
             }
         }
 
+        public void ClearCache()
+        {
+            mapCache = new Bitmap[Size.Width, Size.Height];
+        }
+
         public Bitmap GetFullyRenderedTile(int x, int y, int sizeModifier, bool forceRenderEmpty, bool currentShowTiles, bool currentShowObjects)
         {
             var cachedTile = mapCache[x, y];

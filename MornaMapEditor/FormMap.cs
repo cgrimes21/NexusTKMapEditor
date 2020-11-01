@@ -537,6 +537,7 @@ namespace MornaMapEditor
         {
             showTiles = showTilesToolStripMenuItem.Checked;
             changeSinceRender = true;
+            activeMap.ClearCache();
             pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
             Invalidate();
         }
@@ -545,6 +546,7 @@ namespace MornaMapEditor
         {
             showObjects = showObjectsToolStripMenuItem.Checked;
             changeSinceRender = true;
+            activeMap.ClearCache();
             pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
             Invalidate();
         }

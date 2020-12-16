@@ -14,7 +14,7 @@ namespace MornaMapEditor
 
         public static Dictionary<Point, int> TileSelection = new Dictionary<Point, int>();
         public static Dictionary<Point, int> ObjectSelection = new Dictionary<Point, int>();
-        public static Dictionary<Point, int> PassSelection = new Dictionary<Point, int>();
+        public static Dictionary<Point, bool> PassSelection = new Dictionary<Point, bool>();
 
         public static ToolStripLabel lblStatus { get; set; }
         public static EPFFile[] Epf {get; private set;}

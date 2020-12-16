@@ -68,7 +68,7 @@ namespace MornaMapEditor
             {
                 TileManager.LastSelection |= TileManager.SelectionType.Pass;
                 foreach (KeyValuePair<Point, Tile> keyValuePair in selection)
-                    TileManager.PassSelection.Add(keyValuePair.Key, keyValuePair.Value.Passable ? 0 : 1);
+                    TileManager.PassSelection.Add(keyValuePair.Key, keyValuePair.Value.Passable);
             }
             if (CopyTiles)
             {

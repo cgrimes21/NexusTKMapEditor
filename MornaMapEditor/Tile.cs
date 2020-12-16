@@ -4,7 +4,7 @@ namespace MornaMapEditor
 {
     public class Tile
     {
-        public static Tile DefaultTile => new Tile(0, true, 0);
+        public static Tile DefaultTile => new Tile(0, false, 0);
 
         public Tile(int tileNumber, bool passable, int objectNumber)
         {

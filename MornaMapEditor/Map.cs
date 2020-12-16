@@ -16,6 +16,8 @@ namespace MornaMapEditor
         private Bitmap[,] mapCache;
         private bool showTiles = true;
         private bool showObjects = true;
+        private int totalPassable;
+        private int totalNotPassable;
 
         public Map(string mapPath)
         {
@@ -61,12 +63,16 @@ namespace MornaMapEditor
                     reader = new BinaryReader(new InflaterInputStream(mapFileStream));
                 }
 
+                //Reset passability before we load
+                totalPassable = totalNotPassable = 0;
                 for (int y = 0; y < sy; y++)
                 {
                     for (int x = 0; x < sx; x++)
                     {
                         var tileNumber = reader.ReadUInt16();
-                        var passable = reader.ReadUInt16();
+                        // Passible is true when == 0 in the data
+                        var passableVal = reader.ReadUInt16();
+                        var passable = !Convert.ToBoolean(passableVal);
                         var objectNumber = reader.ReadUInt16();
                         if (!tileCompressed)
                         {
@@ -76,7 +82,9 @@ namespace MornaMapEditor
                             tileNumber = BitConverter.ToUInt16(new[] {tileBtyes[1], tileBtyes[0]}, 0);
                             objectNumber = BitConverter.ToUInt16(new[] {objectBytes[1], objectBytes[0]}, 0);
                         }
-                        mapData[x, y] = new Tile(tileNumber, Convert.ToBoolean(passable), objectNumber);
+                        mapData[x, y] = new Tile(tileNumber, passable, objectNumber);
+                        totalPassable += passable ? 1 : 0;
+                        totalNotPassable += passable ? 0 : 1;
                     }
                 }
 
@@ -135,7 +143,8 @@ namespace MornaMapEditor
                     if (tileCompressed)
                     {
                         writer.Write((short) ((this[x, y] != null) ? this[x, y].TileNumber : 0));
-                        writer.Write(Convert.ToInt16((this[x, y] == null) || this[x, y].Passable));
+                        // Passible is true when == 0 in the data
+                        writer.Write(Convert.ToInt16((this[x, y] == null) || !this[x, y].Passable));
                         writer.Write((short) ((this[x, y] != null) ? this[x, y].ObjectNumber : 0));
                     }
                     else
@@ -145,7 +154,8 @@ namespace MornaMapEditor
                         var objectBytes = BitConverter.GetBytes(this[x, y].ObjectNumber);
                         writer.Write(tileBytes[1]);
                         writer.Write(tileBytes[0]);
-                        writer.Write(Convert.ToInt16((this[x, y] == null) || this[x, y].Passable));
+                        // Passible is true when == 0 in the data
+                        writer.Write(Convert.ToInt16((this[x, y] == null) || !this[x, y].Passable));
                         writer.Write(objectBytes[1]);
                         writer.Write(objectBytes[0]);
                     }
@@ -175,12 +185,13 @@ namespace MornaMapEditor
             CreateEmptyMap(width, height);
             IsEditable = true;
         }
-
         private void CreateEmptyMap(int width, int height)
         {
             Size = new Size(width, height);
             mapData = new Tile[width,height];
             mapCache = new Bitmap[width,height];
+            totalPassable = 0;
+            totalNotPassable = width * height;
         }
 
         public void ResizeMap(Size newSize)
@@ -201,6 +212,8 @@ namespace MornaMapEditor
                 Array.Copy(oldData, startIndexOld, mapData, startIndexNew, Math.Min(oldSize.Height, Size.Height));
                 Array.Copy(oldCache, startIndexOld, mapCache, startIndexNew, Math.Min(oldSize.Height, Size.Height));
             }
+            
+            RecalculateTotalPassable();
         }
 
         public void ClearCache()
@@ -306,6 +319,34 @@ namespace MornaMapEditor
 
             graphics.Dispose();
             return returnImage;
+        }
+
+        private void RecalculateTotalPassable()
+        {
+            totalPassable = 0;
+            totalNotPassable = 0;
+            foreach (var tile in mapData)
+            {
+                totalPassable += tile.Passable ? 1 : 0;
+                totalNotPassable += tile.Passable ? 0 : 1;
+            }
+        }
+
+        public bool IsMorePassable()
+        {
+            return totalPassable > totalNotPassable;
+        }
+
+        public void SetAllPass(bool enabled)
+        {
+            foreach (var tile in mapData)
+            {
+                tile.Passable = enabled;
+            }
+
+            totalPassable = enabled ? Size.Width * Size.Height : 0;
+            totalNotPassable = enabled ? 0 : Size.Width * Size.Height;
+            IsModified = true;
         }
     }
 }

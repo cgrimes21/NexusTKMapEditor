@@ -44,7 +44,7 @@ namespace MornaMapEditor
             {
                 showGrid = value;
                 changeSinceRender = true;
-                Invalidate();
+                pnlImage.Invalidate();
             }
         }
 
@@ -57,7 +57,7 @@ namespace MornaMapEditor
             {
                 showPass = value;
                 changeSinceRender = true;
-                Invalidate();
+                pnlImage.Invalidate();
             }
         }
 
@@ -130,7 +130,7 @@ namespace MornaMapEditor
                     for (int j = 0; j < activeMap.Size.Height; j++)
                     {
                         Tile mapTile = activeMap[i, j];
-                        e.Graphics.DrawRectangle((mapTile == null || mapTile.Passable) ? penRed : penGreen, i * sizeModifier + (sizeModifier * 5 / 12), j * sizeModifier + (sizeModifier * 5 / 12), (sizeModifier * 1 / 6), (sizeModifier * 1 / 6));
+                        e.Graphics.DrawRectangle((mapTile == null || !mapTile.Passable) ? penRed : penGreen, i * sizeModifier + (sizeModifier * 5 / 12), j * sizeModifier + (sizeModifier * 5 / 12), (sizeModifier * 1 / 6), (sizeModifier * 1 / 6));
                     }
                 }
                 penGreen.Dispose();
@@ -237,7 +237,7 @@ namespace MornaMapEditor
 
                 string message = string.Format("Focused tile: ({0}, {1})", newFocusedTileX, newFocusedTileY);
                 if (mapTile == null) message += "    Pass = False";
-                else message += string.Format("Tile number: {0}    Object number: {1}    Pass: {2}", mapTile.TileNumber, mapTile.ObjectNumber, !mapTile.Passable);
+                else message += string.Format("Tile number: {0}    Object number: {1}    Pass: {2}", mapTile.TileNumber, mapTile.ObjectNumber, mapTile.Passable);
 
                 toolStripStatusLabel.Text = message;
             }
@@ -263,7 +263,7 @@ namespace MornaMapEditor
                     }
                     activeMap.IsModified = changeSinceRender = true;
                     pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
-                    Invalidate();
+                    pnlImage.Invalidate();
                 }
             }
 
@@ -295,7 +295,7 @@ namespace MornaMapEditor
                     }
                     activeMap.IsModified = changeSinceRender = true;
                     pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
-                    Invalidate();
+                    pnlImage.Invalidate();
                 }
 
             }
@@ -478,7 +478,7 @@ namespace MornaMapEditor
             lastAction.Undo(activeMap);
             activeMap.IsModified = changeSinceRender = true;
             pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
-            Invalidate();
+            pnlImage.Invalidate();
         }
 
         private void redoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -491,7 +491,7 @@ namespace MornaMapEditor
             lastAction.Redo(activeMap);
             activeMap.IsModified = changeSinceRender = true;
             pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
-            Invalidate();
+            pnlImage.Invalidate();
         }
 
         private void editableToolStripMenuItem_Click(object sender, EventArgs e)
@@ -518,7 +518,7 @@ namespace MornaMapEditor
             changeSinceRender = true;
             this.ClientSize = new System.Drawing.Size(mapSizeDialog.MapSize.Width * sizeModifier, mapSizeDialog.MapSize.Height * sizeModifier + System.Windows.Forms.SystemInformation.HorizontalScrollBarHeight + 5);
             pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
-            Invalidate();
+            pnlImage.Invalidate();
         }
 
         private void copySectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -539,7 +539,7 @@ namespace MornaMapEditor
             changeSinceRender = true;
             activeMap.ClearCache();
             pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
-            Invalidate();
+            pnlImage.Invalidate();
         }
 
         private void showObjectsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -548,21 +548,21 @@ namespace MornaMapEditor
             changeSinceRender = true;
             activeMap.ClearCache();
             pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
-            Invalidate();
+            pnlImage.Invalidate();
         }
 
         private void showPassToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowPass = showPassToolStripMenuItem.Checked;
             changeSinceRender = true;
-            Invalidate();
+            pnlImage.Invalidate();
         }
 
         private void showGridToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowGrid = showGridToolStripMenuItem.Checked;
             changeSinceRender = true;
-            Invalidate();
+            pnlImage.Invalidate();
         }
 
         #endregion
@@ -600,7 +600,7 @@ namespace MornaMapEditor
             mapRedoActions.Clear();
             changeSinceRender = true;
             pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
-            Invalidate();
+            pnlImage.Invalidate();
             this.ClientSize = new System.Drawing.Size(width * sizeModifier, height * sizeModifier + System.Windows.Forms.SystemInformation.HorizontalScrollBarHeight + 5);
             //UpdateMinimap(true, true);
         }
@@ -631,22 +631,14 @@ namespace MornaMapEditor
                 mapRedoActions.Clear();
                 changeSinceRender = true;
                 pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
-                Invalidate();
+                pnlImage.Invalidate();
                 this.ClientSize = new System.Drawing.Size(activeMap.Size.Width * sizeModifier, activeMap.Size.Height * sizeModifier + System.Windows.Forms.SystemInformation.HorizontalScrollBarHeight + 5);
                 //UpdateMinimap(true, true);
-            }
-            catch (EndOfStreamException)
-            {
-                //Special handling for older version of maker that inverted some bytes
-                activeMap = new Map(activeMapPath);
-                Text = string.Format("Map [{0}]", activeMap.Name);
-                editableToolStripMenuItem.Checked = activeMap.IsEditable;
-                mapUndoActions.Clear();
-                mapRedoActions.Clear();
-                changeSinceRender = true;
-                pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
-                Invalidate();
-                //UpdateMinimap(true, true);
+                if (activeMap.IsMorePassable())
+                {
+                    enableAllPassableToolStripMenuItem.Text = "Set All Not Passable";
+                    enableAllPassableToolStripMenuItem.Invalidate();
+                }
             }
             catch (Exception ex)
             {
@@ -719,79 +711,102 @@ namespace MornaMapEditor
 
         private void Paste(int tileX, int tileY, TileManager.SelectionType selectionType)
         {
-            Dictionary<Point, int> selection;
-            if (selectionType == TileManager.SelectionType.Object) selection = TileManager.ObjectSelection;
-            else if (selectionType == TileManager.SelectionType.Pass) selection = TileManager.PassSelection;
-            else if (selectionType == TileManager.SelectionType.Tile) selection = TileManager.TileSelection;
-            else return;
-
             var graphics = Graphics.FromImage(pnlImage.Image);
-
-            foreach (KeyValuePair<Point, int> keyValuePair in selection)
+            if (selectionType == TileManager.SelectionType.Object || selectionType == TileManager.SelectionType.Tile)
             {
-                int mapTileX = keyValuePair.Key.X + tileX;
-                int mapTileY = keyValuePair.Key.Y + tileY;
+                var selection = (selectionType == TileManager.SelectionType.Object)
+                    ? TileManager.ObjectSelection
+                    : TileManager.TileSelection;
 
-                if (mapTileX < activeMap.Size.Width && mapTileY < activeMap.Size.Height)
+                foreach (KeyValuePair<Point, int> keyValuePair in selection)
                 {
-                    activeMap[mapTileX, mapTileY] = activeMap[mapTileX, mapTileY] ?? Tile.DefaultTile;
+                    int mapTileX = keyValuePair.Key.X + tileX;
+                    int mapTileY = keyValuePair.Key.Y + tileY;
 
-                    // Go to next step of the loop if old value equals new value
-                    int oldValue;
-                    if (selectionType == TileManager.SelectionType.Object) oldValue = activeMap[mapTileX, mapTileY].ObjectNumber;
-                    else if (selectionType == TileManager.SelectionType.Pass) oldValue = activeMap[mapTileX, mapTileY].Passable ? 0 : 1;
-                    else oldValue = activeMap[mapTileX, mapTileY].TileNumber;
-
-                    if (oldValue == keyValuePair.Value) continue;
-
-                    // Paste new value
-                    Point point = new Point(mapTileX, mapTileY);
-                    activeMap.IsModified = true;
-
-                    if (selectionType == TileManager.SelectionType.Object)
+                    if (mapTileX < activeMap.Size.Width && mapTileY < activeMap.Size.Height)
                     {
-                        AddMapAction(new MapActionPasteObject(point, activeMap[mapTileX, mapTileY].ObjectNumber, keyValuePair.Value));
-                        activeMap[mapTileX, mapTileY].ObjectNumber = keyValuePair.Value;
-                    }
+                        activeMap[mapTileX, mapTileY] = activeMap[mapTileX, mapTileY] ?? Tile.DefaultTile;
 
-                    if (selectionType == TileManager.SelectionType.Pass)
-                    {
-                        AddMapAction(new MapActionPastePass(point, keyValuePair.Value));
-                        activeMap[mapTileX, mapTileY].Passable = (keyValuePair.Value == 0 ? true : false);
-                    }
+                        // Go to next step of the loop if old value equals new value
+                        var oldValue = selectionType == TileManager.SelectionType.Object
+                            ? activeMap[mapTileX, mapTileY].ObjectNumber
+                            : activeMap[mapTileX, mapTileY].TileNumber;
 
-                    if (selectionType == TileManager.SelectionType.Tile)
-                    {
-                        AddMapAction(new MapActionPasteTile(point, activeMap[mapTileX, mapTileY].TileNumber, keyValuePair.Value));
-                        activeMap[mapTileX, mapTileY].TileNumber = keyValuePair.Value;
-                    }
+                        if (oldValue == keyValuePair.Value) continue;
 
-                    if (selectionType == TileManager.SelectionType.Object)
-                    {
-                        for (int i = 0; i < 12; i++)
+                        // Paste new value
+                        Point point = new Point(mapTileX, mapTileY);
+                        activeMap.IsModified = true;
+
+                        if (selectionType == TileManager.SelectionType.Object)
                         {
-                            if (mapTileY - i >= 0)
+                            AddMapAction(new MapActionPasteObject(point, activeMap[mapTileX, mapTileY].ObjectNumber,
+                                keyValuePair.Value));
+                            activeMap[mapTileX, mapTileY].ObjectNumber = keyValuePair.Value;
+                            for (int i = 0; i < 12; i++)
                             {
-                                var currentTileY = mapTileY - i;
-                                activeMap[mapTileX, currentTileY] = activeMap[mapTileX, currentTileY] ?? Tile.DefaultTile;
-                                var renderedTile = activeMap.GetFullyRenderedTile(mapTileX, currentTileY, sizeModifier,
-                                    activeMap[mapTileX, currentTileY].ObjectNumber == 0, showTiles, showObjects);
-                                graphics.DrawImage(renderedTile, mapTileX * sizeModifier, (currentTileY) * sizeModifier);
+                                if (mapTileY - i >= 0)
+                                {
+                                    var currentTileY = mapTileY - i;
+                                    activeMap[mapTileX, currentTileY] =
+                                        activeMap[mapTileX, currentTileY] ?? Tile.DefaultTile;
+                                    var renderedTile = activeMap.GetFullyRenderedTile(mapTileX, currentTileY,
+                                        sizeModifier,
+                                        activeMap[mapTileX, currentTileY].ObjectNumber == 0, showTiles, showObjects);
+                                    graphics.DrawImage(renderedTile, mapTileX * sizeModifier,
+                                        (currentTileY) * sizeModifier);
+                                }
                             }
                         }
+
+                        else
+                        {
+                            AddMapAction(new MapActionPasteTile(point, activeMap[mapTileX, mapTileY].TileNumber,
+                                keyValuePair.Value));
+                            activeMap[mapTileX, mapTileY].TileNumber = keyValuePair.Value;
+                            var renderedTile = activeMap.GetFullyRenderedTile(mapTileX, mapTileY, sizeModifier,
+                                activeMap[mapTileX, mapTileY].TileNumber == 0, showTiles, showObjects);
+                            graphics.DrawImage(renderedTile, mapTileX * sizeModifier, mapTileY * sizeModifier);
+                        }
                     }
-                    else
+                }
+            } 
+            else if (selectionType == TileManager.SelectionType.Pass)
+            {
+                var selection = TileManager.PassSelection;
+                foreach (KeyValuePair<Point, bool> keyValuePair in selection)
+                {
+                    int mapTileX = keyValuePair.Key.X + tileX;
+                    int mapTileY = keyValuePair.Key.Y + tileY;
+
+                    if (mapTileX < activeMap.Size.Width && mapTileY < activeMap.Size.Height)
                     {
+                        activeMap[mapTileX, mapTileY] = activeMap[mapTileX, mapTileY] ?? Tile.DefaultTile;
+
+                        // Go to next step of the loop if old value equals new value
+                        var oldValue = activeMap[mapTileX, mapTileY].Passable;
+                        if (oldValue == keyValuePair.Value) continue;
+
+                        // Paste new value
+                        Point point = new Point(mapTileX, mapTileY);
+                        activeMap.IsModified = true;
+                        AddMapAction(new MapActionPastePass(point, keyValuePair.Value));
+                        activeMap[mapTileX, mapTileY].Passable = keyValuePair.Value;
                         var renderedTile = activeMap.GetFullyRenderedTile(mapTileX, mapTileY, sizeModifier,
                             activeMap[mapTileX, mapTileY].TileNumber == 0, showTiles, showObjects);
                         graphics.DrawImage(renderedTile, mapTileX * sizeModifier, mapTileY * sizeModifier);
                     }
                 }
             }
+            else
+            {
+                return;
+            }
+
             graphics.Dispose();
             activeMap.IsModified = changeSinceRender = true;
             pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
-            Invalidate();
+            pnlImage.Invalidate();
         }
 
         private void TogglePass(int tileX, int tileY)
@@ -804,7 +819,7 @@ namespace MornaMapEditor
             else activeMap[tileX, tileY].Passable = !activeMap[tileX, tileY].Passable;
 
             activeMap.IsModified = true;
-            AddMapAction(new MapActionPastePass(new Point(tileX, tileY), (activeMap[tileX, tileY].Passable ? 0 : 1)));
+            AddMapAction(new MapActionPastePass(new Point(tileX, tileY), activeMap[tileX, tileY].Passable));
             activeMap.IsModified = changeSinceRender = true;
             Refresh();
         }
@@ -848,7 +863,17 @@ namespace MornaMapEditor
             sizeModifier = ImageRenderer.Singleton.sizeModifier;
             changeSinceRender = true;
             pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
-            Invalidate();
+            pnlImage.Invalidate();
+        }
+
+        private void enableAllPassableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var currentPassability = !activeMap.IsMorePassable();
+            activeMap.SetAllPass(currentPassability);
+            enableAllPassableToolStripMenuItem.Text = currentPassability ? "Set All Not Passable" : "Set All Passable";
+            enableAllPassableToolStripMenuItem.Invalidate();
+            changeSinceRender = true;
+            pnlImage.Invalidate();
         }
     }
 }

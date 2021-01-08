@@ -38,7 +38,9 @@ namespace MornaMapEditor
         /// <returns></returns>
         public static string GetGameInstallFolder()
         {
-            OpenFileDialog fileDialog = new OpenFileDialog { Filter = "MornaTK|MornaTK.exe|NexusTK|NexusTK.exe" };
+            OpenFileDialog fileDialog = new OpenFileDialog { Filter = "AncientTK|AncientTK.exe|MornaTK|MornaTK.exe|NexusTK|NexusTK.exe" };
+            fileDialog.Title = "Select the AncientTK, MornaTK, or NexusTK executable";
+            fileDialog.InitialDirectory = "C:\\";
             DialogResult result = fileDialog.ShowDialog();
 
             if (result != DialogResult.OK)

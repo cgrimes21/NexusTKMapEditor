@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 
-namespace BaramMapEditor
+namespace NexusTKMapEditor
 {
     public partial class BatchConverterDialog : Form
     {

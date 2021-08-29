@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace BaramMapEditor
+namespace NexusTKMapEditor
 {
     public partial class FormAbout : Form
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace BaramMapEditor
+namespace NexusTKMapEditor
 {
     public class ObjectInfo
     {

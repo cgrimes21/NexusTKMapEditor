@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace BaramMapEditor
+namespace NexusTKMapEditor
 {
     public sealed class PaletteTable
     {

@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace BaramMapEditor
+namespace NexusTKMapEditor
 {
     public class EPFFrame
     {

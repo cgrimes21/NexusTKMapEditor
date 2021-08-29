@@ -4,7 +4,7 @@ using System.Drawing;
 using System.IO;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
-namespace BaramMapEditor
+namespace NexusTKMapEditor
 {
     public class Map
     {

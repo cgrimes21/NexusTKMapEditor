@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace BaramMapEditor
+namespace NexusTKMapEditor
 {
     public partial class FormMinimap : Form
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace BaramMapEditor
+namespace NexusTKMapEditor
 {
     partial class BatchConverterDialog
     {

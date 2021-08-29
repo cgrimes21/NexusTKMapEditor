@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace BaramMapEditor.MapActions
+namespace NexusTKMapEditor.MapActions
 {
     public class MapActionResize : IMapAction
     {

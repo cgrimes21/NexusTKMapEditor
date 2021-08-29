@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace BaramMapEditor.MapActions
+namespace NexusTKMapEditor.MapActions
 {
     public class MapActionPasteTile : IMapAction
     {
@@ -16,13 +16,13 @@ namespace BaramMapEditor.MapActions
 
         public void Undo(Map map)
         {
-            map[Tile.X, Tile.Y] = map[Tile.X, Tile.Y] ?? BaramMapEditor.Tile.DefaultTile;
+            map[Tile.X, Tile.Y] = map[Tile.X, Tile.Y] ?? NexusTKMapEditor.Tile.DefaultTile;
             map[Tile.X, Tile.Y].TileNumber = oldTileNumber;
         }
 
         public void Redo(Map map)
         {
-            map[Tile.X, Tile.Y] = map[Tile.X, Tile.Y] ?? BaramMapEditor.Tile.DefaultTile;
+            map[Tile.X, Tile.Y] = map[Tile.X, Tile.Y] ?? NexusTKMapEditor.Tile.DefaultTile;
             map[Tile.X, Tile.Y].TileNumber = newTileNumber;
         }
     }

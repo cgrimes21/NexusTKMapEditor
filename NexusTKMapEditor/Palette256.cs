@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace BaramMapEditor
+namespace NexusTKMapEditor
 {
     public class Palette256
     {

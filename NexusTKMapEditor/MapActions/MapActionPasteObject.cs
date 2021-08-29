@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace BaramMapEditor.MapActions
+namespace NexusTKMapEditor.MapActions
 {
     public class MapActionPasteObject : IMapAction
     {
@@ -16,7 +16,7 @@ namespace BaramMapEditor.MapActions
 
         public void Undo(Map map)
         {
-            map[Tile.X, Tile.Y] = map[Tile.X, Tile.Y] ?? BaramMapEditor.Tile.DefaultTile;
+            map[Tile.X, Tile.Y] = map[Tile.X, Tile.Y] ?? NexusTKMapEditor.Tile.DefaultTile;
             map[Tile.X, Tile.Y].ObjectNumber = oldObjectNumber;
             
             // Set the tile and those above it to themselves to clear their cache data
@@ -25,14 +25,14 @@ namespace BaramMapEditor.MapActions
                 if (Tile.Y - i >= 0)
                 {
                     var currentTileY = Tile.Y - i;
-                    map[Tile.X, currentTileY] = map[Tile.X, currentTileY] ?? BaramMapEditor.Tile.DefaultTile;
+                    map[Tile.X, currentTileY] = map[Tile.X, currentTileY] ?? NexusTKMapEditor.Tile.DefaultTile;
                 }
             }
         }
 
         public void Redo(Map map)
         {
-            map[Tile.X, Tile.Y] = map[Tile.X, Tile.Y] ?? BaramMapEditor.Tile.DefaultTile;
+            map[Tile.X, Tile.Y] = map[Tile.X, Tile.Y] ?? NexusTKMapEditor.Tile.DefaultTile;
             map[Tile.X, Tile.Y].ObjectNumber = newObjectNumber;
             
             // Set the tile and those above it to themselves to clear their cache data
@@ -41,7 +41,7 @@ namespace BaramMapEditor.MapActions
                 if (Tile.Y - i >= 0)
                 {
                     var currentTileY = Tile.Y - i;
-                    map[Tile.X, currentTileY] = map[Tile.X, currentTileY] ?? BaramMapEditor.Tile.DefaultTile;
+                    map[Tile.X, currentTileY] = map[Tile.X, currentTileY] ?? NexusTKMapEditor.Tile.DefaultTile;
                 }
             }
         }

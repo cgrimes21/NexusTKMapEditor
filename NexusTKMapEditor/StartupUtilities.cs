@@ -3,7 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using Microsoft.Win32;
 
-namespace BaramMapEditor
+namespace NexusTKMapEditor
 {
     public static class StartupUtilities
     {

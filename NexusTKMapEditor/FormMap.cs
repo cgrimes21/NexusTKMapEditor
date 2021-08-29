@@ -6,9 +6,9 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-using BaramMapEditor.MapActions;
+using NexusTKMapEditor.MapActions;
 
-namespace BaramMapEditor
+namespace NexusTKMapEditor
 {
     public sealed partial class FormMap : Form
     {

@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.IO;
 
-namespace BaramMapEditor
+namespace NexusTKMapEditor
 {
     public class EPFFile
     {

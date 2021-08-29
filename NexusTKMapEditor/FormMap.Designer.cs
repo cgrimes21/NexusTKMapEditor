@@ -1,4 +1,4 @@
-﻿namespace BaramMapEditor
+﻿namespace NexusTKMapEditor
 {
     sealed partial class FormMap
     {

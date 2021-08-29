@@ -86,7 +86,9 @@
   <ItemGroup>
     <Compile Include="ArchiveInfo.cs" />
     <Compile Include="BatchConverter.cs" />
-    <Compile Include="BatchConverterDialog.cs" />
+    <Compile Include="BatchConverterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="BatchConverterDialog.Designer.cs" />
     <Compile Include="FormAbout.cs">
       <SubType>Form</SubType>

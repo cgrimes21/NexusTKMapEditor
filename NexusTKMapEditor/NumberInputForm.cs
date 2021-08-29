@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace BaramMapEditor
+namespace NexusTKMapEditor
 {
     public sealed partial class NumberInputForm : Form
     {

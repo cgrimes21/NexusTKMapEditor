@@ -1,4 +1,4 @@
-﻿namespace BaramMapEditor
+﻿namespace NexusTKMapEditor
 {
     public class Crc32
     {

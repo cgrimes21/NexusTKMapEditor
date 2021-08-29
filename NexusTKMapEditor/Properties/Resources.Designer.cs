@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BaramMapEditor.Properties {
+namespace NexusTKMapEditor.Properties {
     using System;
     
     

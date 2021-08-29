@@ -327,8 +327,11 @@ namespace NexusTKMapEditor
             totalNotPassable = 0;
             foreach (var tile in mapData)
             {
-                totalPassable += tile.Passable ? 1 : 0;
-                totalNotPassable += tile.Passable ? 0 : 1;
+                if (tile != null)
+                {
+                    totalPassable += tile.Passable ? 1 : 0;
+                    totalNotPassable += tile.Passable ? 0 : 1;
+                }
             }
         }
 

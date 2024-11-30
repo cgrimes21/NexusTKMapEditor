@@ -133,6 +133,10 @@
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.frmTile_MouseClick);
             this.MouseLeave += new System.EventHandler(this.FormTile_MouseLeave);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmTile_MouseMove);
+
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.frmTile_MouseUp);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmTile_MouseDown);
+
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.menuStrip.ResumeLayout(false);

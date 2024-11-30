@@ -18,6 +18,7 @@ namespace NexusTKMapEditor
         private int sizeModifier;
         private bool showGrid;
         private bool changeSincePaint;
+        private bool isMouseDown = false;
         
         public bool ShowGrid
         {
@@ -142,10 +143,51 @@ namespace NexusTKMapEditor
             sb1_Scroll(null, null); 
         }
 
+        private void frmTile_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            if (e.Button != MouseButtons.Left) return;
+
+            int newSelectedTileX = e.X / sizeModifier;
+            int newSelectedTileY = e.Y / sizeModifier;
+
+            Point selectedTile = new Point(newSelectedTileX, newSelectedTileY);
+
+            if (!isMouseDown)
+            {
+                if (ModifierKeys == Keys.Control)
+                {
+                    if (!selectedTiles.Contains(selectedTile))
+                        selectedTiles.Add(selectedTile);
+                }
+                else
+                {
+                    selectedTiles.Clear();
+                    selectedTiles.Add(selectedTile);
+                }
+                TileManager.TileSelection = NormalizeSelection();
+                TileManager.LastSelection = TileManager.SelectionType.Tile;
+            }
+
+            isMouseDown = true;
+        }
+
+        private void frmTile_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left) return;
+            isMouseDown = false;
+        }
+
         private void frmTile_MouseMove(object sender, MouseEventArgs e)
         {
             var xIndex = e.X / sizeModifier;
             var yIndex = e.Y / sizeModifier;
+            bool refresh = (xIndex != focusedTile.X || yIndex != focusedTile.Y);
+            if (refresh)
+            {
+                frmTile_MouseClick(sender, e);
+            }
+
             if(xIndex >= tilesPerRow || yIndex >= tileRows)
                 ClearFocusedTile();
             else
@@ -179,20 +221,18 @@ namespace NexusTKMapEditor
             int xIndex = e.X / sizeModifier;
             int yIndex = e.Y / sizeModifier;
             Point selectedTile = new Point(xIndex, yIndex);
-            
+            bool refresh = (selectedTile != focusedTile);
 
-             if (ModifierKeys == Keys.Control)
-             {
-                 if (!selectedTiles.Contains(selectedTile))
-                     selectedTiles.Add(selectedTile);
-             }
-             else
-             {
-                 selectedTiles.Clear();
-                 selectedTiles.Add(selectedTile);
-             }
-             TileManager.TileSelection = NormalizeSelection();
-             TileManager.LastSelection = TileManager.SelectionType.Tile;
+            if(refresh && isMouseDown)
+            {
+                if (selectedTiles.Contains(selectedTile))
+                    selectedTiles.Remove(selectedTile);
+                else
+                    selectedTiles.Add(selectedTile);
+                TileManager.TileSelection = NormalizeSelection();
+                TileManager.LastSelection = TileManager.SelectionType.Tile;
+            }
+            
              changeSincePaint = true;
              Invalidate();
         }

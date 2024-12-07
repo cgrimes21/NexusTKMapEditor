@@ -12,6 +12,7 @@ namespace NexusTKMapEditor
         private int sizeModifier;
         private bool isMouseDown = false;
         private bool showGrid;
+        private readonly short penSelectOffsetY = 50;
         public bool ShowGrid
         {
             get { return showGrid; }
@@ -62,7 +63,7 @@ namespace NexusTKMapEditor
                     if (tile < TileManager.Epf[1].max)
                     {
                         //Bitmap bitmap = ImageRenderer.Singleton.GetObjectBitmap(tile);
-                        g.DrawImage(ImageRenderer.Singleton.GetObjectBitmap(tile), x * sizeModifier, y * sizeModifier);//, 36, 36);
+                        g.DrawImage(ImageRenderer.Singleton.GetObjectBitmap(tile), x * sizeModifier, y * sizeModifier - penSelectOffsetY);//, 36, 36);
                         //bitmap = null;
                     }
                 }
@@ -105,7 +106,7 @@ namespace NexusTKMapEditor
                 {
                     int objectInfoIndex = GetObjectNumber(selectedColumn);
                     int objectInfoHeight = TileManager.ObjectInfos[objectInfoIndex].Height;
-                    e.Graphics.DrawRectangle(pen, selectedColumn * sizeModifier, (12 * sizeModifier) - (objectInfoHeight * sizeModifier), sizeModifier, objectInfoHeight * sizeModifier);
+                    e.Graphics.DrawRectangle(pen, selectedColumn * sizeModifier, (12 * sizeModifier) - (objectInfoHeight * sizeModifier) - penSelectOffsetY, sizeModifier, objectInfoHeight * sizeModifier);
                 }
                 pen.Dispose();
             }
@@ -115,7 +116,7 @@ namespace NexusTKMapEditor
                 Pen pen = new Pen(Color.Green, 2);
                 int objectInfoIndex = GetObjectNumber(focusedColumn);
                 int objectInfoHeight = TileManager.ObjectInfos[objectInfoIndex].Height;
-                e.Graphics.DrawRectangle(pen, focusedColumn * sizeModifier, (12 * sizeModifier) - (objectInfoHeight * sizeModifier), sizeModifier, objectInfoHeight * sizeModifier);
+                e.Graphics.DrawRectangle(pen, focusedColumn * sizeModifier, (12 * sizeModifier) - (objectInfoHeight * sizeModifier) - penSelectOffsetY, sizeModifier, objectInfoHeight * sizeModifier);
                 pen.Dispose();
             }
         }

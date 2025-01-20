@@ -14,6 +14,7 @@ namespace NexusTKMapEditor
 
         bool isDisposed;
         public int sizeModifier = 36;
+        public Color clearColor = Color.FromArgb(235, 235, 235);
         Dictionary<int, Bitmap> cachedTiles = new Dictionary<int, Bitmap>(CacheInitialCapacity);
         Dictionary<int, Bitmap> cachedObjects = new Dictionary<int, Bitmap>(CacheInitialCapacity);
 
@@ -247,7 +248,7 @@ namespace NexusTKMapEditor
             //If only showing objects, make sure we have a background of dark green first
             lock (drawLock)
             {
-                graphics.FillRectangle(Brushes.DarkGreen, 0, 0, sizeModifier, sizeModifier);
+                graphics.FillRectangle(new SolidBrush(ImageRenderer.Singleton.clearColor), 0, 0, sizeModifier, sizeModifier);
                 graphics.DrawImage(unfilledObjectBitmap, 0, 0, sizeModifier, sizeModifier);
                 graphics.Dispose();
                 return renderedBitmap.Clone() as Bitmap;

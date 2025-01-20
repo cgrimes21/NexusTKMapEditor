@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Windows.Forms;
 
 namespace NexusTKMapEditor
@@ -82,12 +85,19 @@ namespace NexusTKMapEditor
             graphics.Clear(Color.DarkGreen);
             Pen penGrid = new Pen(Color.LightCyan, 1);
 
+            int test = (int) Math.Ceiling(ClientSize.Width / Convert.ToDouble(sizeModifier));
+            //tilesPerRow = 16;
+            //tileRows = 16;
             for (int xIndex = 0; xIndex <= (int) Math.Ceiling(ClientSize.Width / Convert.ToDouble(sizeModifier)); xIndex++)
             {
                 for (int yIndex = 0; yIndex < tileRows; yIndex++)
                 {
                     Rectangle tileRectangle = new Rectangle(xIndex * sizeModifier, yIndex * sizeModifier, sizeModifier, sizeModifier);
                     int tileNumber = (sb1.Value + xIndex) + (tilesPerRow * yIndex);
+                    int test2 = sb1.Value * (test*tileRows) + (yIndex * test) + xIndex;
+                    tileNumber = test2;
+                    //int test2 = ((sb1.Value + xIndex) * 5) + yIndex ;
+                    //tileNumber = test2;
                     if (tileNumber < TileManager.Epf[0].max)
                     {
                         graphics.DrawImage(ImageRenderer.Singleton.GetTileBitmap(tileNumber), tileRectangle);
@@ -336,5 +346,44 @@ namespace NexusTKMapEditor
             changeSincePaint = true;
             Refresh();
         }
+
+        private void saveTilesetToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            
+        
+            SaveFileDialog saveFileDialog = new SaveFileDialog { Filter = @"PNG|*.png", FileName = "tileset" };
+            var dialogResult = saveFileDialog.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                string originalFileName = saveFileDialog.FileName;
+
+                // Change the file name (example: add a suffix)
+                string directory = Path.GetDirectoryName(originalFileName);
+                string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(originalFileName);
+                string extension = Path.GetExtension(originalFileName);
+
+                // Modify the file name (e.g., append "_new" to the name)
+                string newFileName; //
+                try
+                {
+                    
+                   // for(int x = 0; x <= 37/*37*/; x++ )
+                    {
+                        //newFileName = Path.Combine(directory, fileNameWithoutExtension + "_" + x + extension);
+                        newFileName =  Path.Combine(directory, fileNameWithoutExtension + "_37" + extension);
+                        BackgroundImage.Save(newFileName, ImageFormat.Png);
+                        Process.Start(newFileName);
+                        sb1.Value += 1;
+                        sb1_Scroll(null, null);
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        
+    }
     }
 }

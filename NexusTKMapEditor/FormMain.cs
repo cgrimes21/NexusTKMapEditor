@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 
@@ -7,6 +8,7 @@ namespace NexusTKMapEditor
     public partial class FormMain : Form
     {
         public int sizeModifier;
+        
         private static readonly FormMain FormInstance = new FormMain();
         private static string startupMapFile = null;
 
@@ -37,7 +39,8 @@ namespace NexusTKMapEditor
             // Set forms to be MDI and show them
             fTile = FormTile.GetFormInstance();
             fTile.MdiParent = this;
-            fObject = new FormObject { MdiParent = this };
+            fObject = FormObject.GetFormInstance();
+            fObject.MdiParent = this;
             fTile.Show();
             fObject.Show();
             if (startupMapFile != null)
@@ -188,6 +191,7 @@ namespace NexusTKMapEditor
                     {
                         FormMap map = (FormMap)mdiChild;
                         map.Reload();
+                        
                     }
                 }
             }
@@ -209,11 +213,18 @@ namespace NexusTKMapEditor
                     "Ctrl + Mouse-Wheel Down: Scroll Down", "Map Window Help");
         }
 
-        private void showTilesMenuItem_Click(object sender, EventArgs e)
+        private void ShowTilesMenuItem_Click(object sender, EventArgs e)
         {
             fTile = FormTile.GetFormInstance();
             fTile.WindowState = FormWindowState.Normal;
             fTile.Show();
+        }
+
+        private void ShowObjectsMenuItem_Click(object sender, EventArgs e)
+        {
+            fObject = FormObject.GetFormInstance();
+            fObject.WindowState = FormWindowState.Normal;
+            fObject.Show();
         }
 
         private void convertMapsToPNGsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -231,6 +242,68 @@ namespace NexusTKMapEditor
                 var startInfo = new ProcessStartInfo("explorer.exe", dialog.DestinationFolder.Text);
                 Process.Start(startInfo);
                 MessageBox.Show("Creation of map images complete.");
+            }
+        }
+
+
+
+        private void whiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            whiteToolStripMenuItem.Checked = true;
+            grayToolStripMenuItem.Checked = false;
+            darkGreenToolStripMenuItem.Checked = false;
+
+            ImageRenderer.Singleton.clearColor = Color.FromArgb(255, 255, 255);
+            ImageRenderer.Singleton.ClearTileCache();
+            ImageRenderer.Singleton.ClearObjectCache();
+            fObject.Reload(true);
+            foreach (Form mdiChild in MdiChildren)
+            {
+                if (mdiChild is FormMap)
+                {
+                    FormMap map = (FormMap)mdiChild;
+                    map.Reload(true);
+                }
+            }
+        }
+
+        private void grayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            whiteToolStripMenuItem.Checked = false;
+            grayToolStripMenuItem.Checked = true;
+            darkGreenToolStripMenuItem.Checked = false;
+
+            ImageRenderer.Singleton.clearColor = Color.FromArgb(235, 235, 235);
+            ImageRenderer.Singleton.ClearTileCache();
+            ImageRenderer.Singleton.ClearObjectCache();
+            fObject.Reload(true);
+            foreach (Form mdiChild in MdiChildren)
+            {
+                if (mdiChild is FormMap)
+                {
+                    FormMap map = (FormMap)mdiChild;
+                    map.Reload(true);
+                }
+            }
+        }
+
+        private void darkGreenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            whiteToolStripMenuItem.Checked = false;
+            grayToolStripMenuItem.Checked = false;
+            darkGreenToolStripMenuItem.Checked = true;
+
+            ImageRenderer.Singleton.clearColor = Color.DarkGreen;
+            ImageRenderer.Singleton.ClearTileCache();
+            ImageRenderer.Singleton.ClearObjectCache();
+            fObject.Reload(true);
+            foreach (Form mdiChild in MdiChildren)
+            {
+                if (mdiChild is FormMap)
+                {
+                    FormMap map = (FormMap)mdiChild;
+                    map.Reload(true);
+                }
             }
         }
     }

@@ -858,12 +858,14 @@ namespace NexusTKMapEditor
             else if (saveCheck == 15) saveToolStripMenuItem.PerformClick();
         }
 
-        public void Reload()
+        public void Reload(bool bypassCache = false)
         {
             sizeModifier = ImageRenderer.Singleton.sizeModifier;
             changeSinceRender = true;
-            pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects);
+            pnlImage.Image = activeMap.GetRenderedMap(showTiles, showObjects, bypassCache);
             pnlImage.Invalidate();
+            
+            
         }
 
         private void enableAllPassableToolStripMenuItem_Click(object sender, EventArgs e)

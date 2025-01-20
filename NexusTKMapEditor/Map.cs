@@ -221,10 +221,11 @@ namespace NexusTKMapEditor
             mapCache = new Bitmap[Size.Width, Size.Height];
         }
 
-        public Bitmap GetFullyRenderedTile(int x, int y, int sizeModifier, bool forceRenderEmpty, bool currentShowTiles, bool currentShowObjects)
+        public Bitmap GetFullyRenderedTile(int x, int y, int sizeModifier, bool forceRenderEmpty, bool currentShowTiles, bool currentShowObjects, bool bypassCache = false)
         {
             var cachedTile = mapCache[x, y];
-            if (cachedTile?.Size.Width == sizeModifier && showTiles == currentShowTiles && showObjects == currentShowObjects)
+            //Only update the cache if the tile is different or bypass cache is on which it is by default
+            if ((cachedTile?.Size.Width == sizeModifier && showTiles == currentShowTiles && showObjects == currentShowObjects) && !bypassCache)
                 return cachedTile;
             showTiles = currentShowTiles;
             showObjects = currentShowObjects;
@@ -234,7 +235,7 @@ namespace NexusTKMapEditor
             {
                 Bitmap bitmapClear = new Bitmap(sizeModifier, sizeModifier);
                 Graphics gClear = Graphics.FromImage(bitmapClear);
-                gClear.Clear(Color.DarkGreen);
+                gClear.Clear(ImageRenderer.Singleton.clearColor);
 
                 if (objectBitmap == null)
                 {
@@ -286,7 +287,7 @@ namespace NexusTKMapEditor
             return ImageRenderer.Singleton.RenderObjects(tilesWithPossibleObjects);
         }
 
-        public Bitmap GetRenderedMap(bool currentShowTiles, bool currentShowObjects)
+        public Bitmap GetRenderedMap(bool currentShowTiles, bool currentShowObjects, bool bypassCache = false)
         {
 
             showTiles = currentShowTiles;
@@ -296,7 +297,7 @@ namespace NexusTKMapEditor
             
             var returnImage = new Bitmap(Size.Width * sizeModifier, Size.Height * sizeModifier);
             var graphics = Graphics.FromImage(returnImage);
-            graphics.Clear(Color.DarkGreen);
+            graphics.Clear(ImageRenderer.Singleton.clearColor);
             
             if (showTiles || showObjects)
             {
@@ -306,13 +307,14 @@ namespace NexusTKMapEditor
                     {
                         var xPos = x * sizeModifier;
                         var yPos = y * sizeModifier;
-                        var renderedTile = GetFullyRenderedTile(x, y, sizeModifier, false, showTiles, showObjects);
+                        var renderedTile = GetFullyRenderedTile(x, y, sizeModifier, false, showTiles, showObjects, bypassCache);
                         if (renderedTile != null)
                         {
                             graphics.DrawImage(renderedTile, xPos, yPos);
                         }
                         else
-                            graphics.FillRectangle(Brushes.DarkGreen, xPos, yPos, sizeModifier, sizeModifier);
+                            
+                            graphics.FillRectangle(new SolidBrush(ImageRenderer.Singleton.clearColor), xPos, yPos, sizeModifier, sizeModifier);
                     }
                 }
             }

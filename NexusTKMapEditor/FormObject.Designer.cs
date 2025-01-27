@@ -141,7 +141,7 @@
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormObject_FormClosing);
             this.Load += new System.EventHandler(this.frmObject_Load);
-            this.SizeChanged += new System.EventHandler(this.FormObject_SizeChanged);
+            
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmObject_Paint);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmObject_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmObject_MouseMove);

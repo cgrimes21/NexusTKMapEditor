@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusTKMapEditor", "NexusTKMapEditor\NexusTKMapEditor.csproj", "{8A09D314-87FD-4F10-831E-0EA425A28E5D}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NexusTKMapEditorInstaller", "NexusTKMapEditorInstaller\NexusTKMapEditorInstaller.vdproj", "{5FDB5D0C-43D6-4D1D-B85A-F1A682DAA505}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "Installer\Installer.vdproj", "{5DB41C04-4989-47A1-8EDF-1B6B48E939BC}"
 EndProject
@@ -31,18 +29,6 @@ Global
 		{8A09D314-87FD-4F10-831E-0EA425A28E5D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8A09D314-87FD-4F10-831E-0EA425A28E5D}.Release|x86.ActiveCfg = Release|Any CPU
 		{8A09D314-87FD-4F10-831E-0EA425A28E5D}.Release|x86.Build.0 = Release|Any CPU
-		{5FDB5D0C-43D6-4D1D-B85A-F1A682DAA505}.Debug|Any CPU.ActiveCfg = Debug
-		{5FDB5D0C-43D6-4D1D-B85A-F1A682DAA505}.Debug|Any CPU.Build.0 = Debug
-		{5FDB5D0C-43D6-4D1D-B85A-F1A682DAA505}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{5FDB5D0C-43D6-4D1D-B85A-F1A682DAA505}.Debug|Mixed Platforms.Build.0 = Debug
-		{5FDB5D0C-43D6-4D1D-B85A-F1A682DAA505}.Debug|x86.ActiveCfg = Debug
-		{5FDB5D0C-43D6-4D1D-B85A-F1A682DAA505}.Debug|x86.Build.0 = Debug
-		{5FDB5D0C-43D6-4D1D-B85A-F1A682DAA505}.Release|Any CPU.ActiveCfg = Release
-		{5FDB5D0C-43D6-4D1D-B85A-F1A682DAA505}.Release|Any CPU.Build.0 = Release
-		{5FDB5D0C-43D6-4D1D-B85A-F1A682DAA505}.Release|Mixed Platforms.ActiveCfg = Release
-		{5FDB5D0C-43D6-4D1D-B85A-F1A682DAA505}.Release|Mixed Platforms.Build.0 = Release
-		{5FDB5D0C-43D6-4D1D-B85A-F1A682DAA505}.Release|x86.ActiveCfg = Release
-		{5FDB5D0C-43D6-4D1D-B85A-F1A682DAA505}.Release|x86.Build.0 = Release
 		{5DB41C04-4989-47A1-8EDF-1B6B48E939BC}.Debug|Any CPU.ActiveCfg = Debug
 		{5DB41C04-4989-47A1-8EDF-1B6B48E939BC}.Debug|Mixed Platforms.ActiveCfg = Debug
 		{5DB41C04-4989-47A1-8EDF-1B6B48E939BC}.Debug|x86.ActiveCfg = Debug

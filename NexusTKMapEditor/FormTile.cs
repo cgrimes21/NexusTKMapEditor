@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace NexusTKMapEditor
 {
@@ -215,6 +216,9 @@ namespace NexusTKMapEditor
             
             //Check for text chagne because scrolling will trigger a change in text without the 'tile' changing
             int tileNumber = (sb1.Value + xIndex) + (tilesPerRow * yIndex);
+            int test = (int)Math.Ceiling(ClientSize.Width / Convert.ToDouble(sizeModifier));
+            int test2 = sb1.Value * (test * tileRows) + (yIndex * test) + xIndex;
+            tileNumber = test2;
             string newText = $"Tile number: {tileNumber}";
             if(!newText.Equals(focusTileLabel.Text)){
                 focusTileLabel.Text = newText;
@@ -268,7 +272,10 @@ namespace NexusTKMapEditor
         
             foreach (Point selectedTile in selectedTiles)
             {
+                int test = (int)Math.Ceiling(ClientSize.Width / Convert.ToDouble(sizeModifier));
+                int test2 = sb1.Value * (test * tileRows) + (selectedTile.Y * test) + selectedTile.X;
                 int tileNumber = (sb1.Value + selectedTile.X) + (tilesPerRow * selectedTile.Y);
+                tileNumber = test2;
                 dictionary.Add(new Point(selectedTile.X - xMin, selectedTile.Y - yMin),  tileNumber);
             }
         
@@ -298,14 +305,40 @@ namespace NexusTKMapEditor
             
             if (tileNumber < 0 || tileNumber> TileManager.Epf[0].max) return;
             //int tileNumber = (sb1.Value + xIndex) + (tilesPerRow * yIndex);
-            int yIndex = tileNumber / tilesPerRow;
-            int indexInRow = tileNumber - (tilesPerRow * yIndex);
-            int viewableTilesPerRow = ClientSize.Width / sizeModifier;
+            int viewableTilesPerRow = (ClientSize.Width+36) / sizeModifier;
+            int viewableTilesPerColumn = (ClientSize.Height-72) / sizeModifier;
+
+            int testRow = tileNumber % viewableTilesPerRow;
+            int testCol = tileNumber / viewableTilesPerRow;
+            int reversedX = (viewableTilesPerRow - 1) - testRow;
+
+            //0 is at top
             
+            int yIndex = tileNumber % viewableTilesPerRow;
+            if (tileNumber < viewableTilesPerRow)
+                yIndex = 0;
+
+            int indexInRow = ((yIndex) * viewableTilesPerRow);// + Math.Max(0, yIndex);
+            indexInRow = tileNumber - indexInRow;
+
+            if (indexInRow < 0)
+            {
+                yIndex -= 1;
+                indexInRow = Math.Abs(viewableTilesPerRow - (Math.Abs(indexInRow)));
+                //indexInRow += (yIndex - 1) * 2;
+                //indexInRow = Math.Abs(indexInRow);
+            }
+            
+
+
             //Scroll to a 'window' instead of the direct indexInRow, this is a bit more of a natural interaction
             int scrollBarIndex = (indexInRow / viewableTilesPerRow) * viewableTilesPerRow;
-            
-            int xIndex = indexInRow - scrollBarIndex;
+            int newScrollBarIndex = tileNumber / (viewableTilesPerRow * viewableTilesPerColumn);
+            scrollBarIndex = newScrollBarIndex;
+
+            int xIndex = indexInRow;// - scrollBarIndex;
+            //int newXIndex = indexInRow + (scrollBarIndex * viewableTilesPerRow);
+            //xIndex = newXIndex;
         
             sb1.Value = scrollBarIndex;
             selectedTiles.Clear();
